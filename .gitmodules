@@ -1,0 +1,6 @@
+[submodule "utils"]
+	path = utils
+	url = git://github.com/vi-k/kotlin-utils.git
+[submodule "documentview"]
+	path = documentview
+	url = git://github.com/vi-k/android-documentview.git
