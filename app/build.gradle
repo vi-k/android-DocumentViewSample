@@ -38,4 +38,8 @@ dependencies {
     implementation "org.jetbrains.anko:anko-constraint-layout:$anko_version"
     implementation "org.jetbrains.anko:anko-recyclerview-v7:$anko_version"
     implementation "org.jetbrains.anko:anko-recyclerview-v7-coroutines:$anko_version"
+
+    // My libs
+    implementation project(path: ':utils')
+    implementation project(path: ':documentview')
 }
