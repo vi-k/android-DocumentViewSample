@@ -3,12 +3,6 @@ package ru.vik.documentviewsample
 import android.graphics.Typeface
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.view.ViewManager
-import org.jetbrains.anko.alignParentTop
-import org.jetbrains.anko.custom.ankoView
-import org.jetbrains.anko.matchParent
-import org.jetbrains.anko.relativeLayout
-import org.jetbrains.anko.support.v4.nestedScrollView
 import ru.vik.documentview.DocumentView
 import ru.vik.documentview.Font
 import ru.vik.documentview.FontList
@@ -20,58 +14,43 @@ import ru.vik.utils.htmldocument.SimpleHtmlDocument
 class MainActivity : AppCompatActivity() {
 
     private lateinit var docView: DocumentView
-    private val fontList = FontList()
-    private val htmlDoc = SimpleHtmlDocument()
-
-    //    inline fun ViewManager.documentView() = documentView {}
-    private inline fun ViewManager.documentView(theme: Int = 0, init: DocumentView.() -> Unit) =
-            ankoView({ DocumentView(it) }, theme, init)
-//    private inline fun ViewManager.documentView(theme: Int = 0, init: DebugDocumentView.() -> Unit) =
-//            ankoView({ DebugDocumentView(it) }, theme, init)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
 
-        this.fontList.createFamily("main", Font(Typeface.SERIF))
-        this.fontList["ponomar"] = Font(
+        val fontList = FontList()
+        fontList.createFamily("sans_serif", Font(Typeface.SANS_SERIF))
+        fontList.createFamily("serif", Font(Typeface.SERIF))
+        fontList["ponomar"] = Font(
                 typeface = Typeface.createFromAsset(this.assets, "fonts/PonomarUnicode.ttf")!!,
                 hyphen = '_',
                 scale = 1.2f)
 
-        val view = this
-        var lastId = 0
+        docView = findViewById(R.id.docView)
+        docView.baselineMode = DocumentView.Baseline.INDENT
+        docView.fontList = fontList
+        docView.characterStyle.font = "sans_serif"
+        docView.characterStyle.size = Size.dp(16f)
+        docView.characterStyle.scaleX = 0.85f
 
-        relativeLayout {
-            nestedScrollView {
-                id = ++lastId
-                view.docView = documentView {
-                    id = ++lastId
-                    baselineMode = DocumentView.Baseline.INDENT
-                    fontList = view.fontList
-                    characterStyle.font = "main"
-                    characterStyle.size = Size.dp(17f)
-                    characterStyle.scaleX = 0.85f
-                    document = view.htmlDoc
-                }.lparams(width = matchParent)
-            }.lparams(width = matchParent, height = matchParent) {
-                alignParentTop()
-            }
-        }
+        val document = SimpleHtmlDocument()
+        docView.document = document
 
-        this.htmlDoc.blockStyle.setPadding(Size.dp(4f))
-        this.htmlDoc.getTagConfig("blockquote")?.let {
+        document.blockStyle.setPadding(Size.dp(4f))
+        document.getTagConfig("blockquote")?.let {
             it.onSetBlockStyle = { tag, blockStyle ->
                 blockStyle.setMargin(Size.dp(8f), null, Size.dp(8f), Size.em(1f))
                 blockStyle.borderLeft = Border.dp(4f, Color.rgb(192, 192, 192))
                 blockStyle.paddingLeft = Size.em(1f)
                 blockStyle.color = Color.rgb(224, 224, 224)
-                it.onSetBlockStyle?.invoke(tag, blockStyle)
+//                it.onSetBlockStyle?.invoke(tag, blockStyle)
             }
 
             it.onSetCharacterStyle = { tag, characterStyle ->
-//                characterStyle.color = Color.rgb(128, 128, 128)
+                characterStyle.color = Color.rgb(128, 128, 128)
                 characterStyle.italic = true
-                this.htmlDoc.setCSFromAttributes(tag, characterStyle)
+                document.setCSFromAttributes(tag, characterStyle)
             }
         }
 
