@@ -5,9 +5,16 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <ru.vik.documentview.DocumentView
-        android:id="@+id/docView"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ru.vik.documentview.DocumentView
+            android:id="@+id/docView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
 
 </ScrollView>
