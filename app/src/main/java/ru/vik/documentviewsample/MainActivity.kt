@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
 //        docView.document.setText(
 //                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod ...")
 //        docView.document
-//                .addSpan(0, 5, CharacterStyle(backgroundColor = Color.RED))
+//                .addSpan(0, 5, CharacterStyle(color = Color.RED))
 //                .addSpan(6, 11, CharacterStyle(bold = true))
 //                .addSpan(12, 17, CharacterStyle(italic = true))
 //                .addSpan(18, 21, CharacterStyle(bold = true, italic = true))
@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
 
 //        /* Пример 1.2 */
 //        docView.document
-//                .addWordSpan(1, CharacterStyle(backgroundColor = Color.RED))
+//                .addWordSpan(1, CharacterStyle(color = Color.RED))
 //                .addWordSpan(2, CharacterStyle(bold = true))
 //                .addWordSpan(3, CharacterStyle(italic = true))
 //                .addWordSpan(4, CharacterStyle(bold = true, italic = true))
@@ -55,8 +55,8 @@ class MainActivity : AppCompatActivity() {
 
 //        /* Пример 2.2 */
 //        docView.document
-//                .addWordSpan(1, 3, CharacterStyle(backgroundColor = Color.RED))
-//                .addWordSpan(3, -1, CharacterStyle(backgroundColor = Color.GREEN))
+//                .addWordSpan(1, 3, CharacterStyle(color = Color.RED))
+//                .addWordSpan(3, -1, CharacterStyle(color = Color.GREEN))
 
 //        /* Пример 3 - Абзацы */
 //        docView.document.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed " +
@@ -66,16 +66,16 @@ class MainActivity : AppCompatActivity() {
 //                "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore " +
 //                "eu fugiat nulla pariatur.")
 //        docView.document[0]
-//                .addSpan(0, 1, CharacterStyle(backgroundColor = Color.RED))
+//                .addSpan(0, 1, CharacterStyle(color = Color.RED))
 //        docView.document[1]
-//                .addSpan(0, 1, CharacterStyle(backgroundColor = Color.RED))
+//                .addSpan(0, 1, CharacterStyle(color = Color.RED))
 //        docView.document[2]
-//                .addSpan(0, 1, CharacterStyle(backgroundColor = Color.RED))
+//                .addSpan(0, 1, CharacterStyle(color = Color.RED))
 
 //        /* Пример 3.2 */
 //        docView.document[0].characterStyle.italic = true
 //        docView.document[1].characterStyle.size = Size.em(0.8f)
-//        docView.document[2].characterStyle.backgroundColor = Color.GRAY
+//        docView.document[2].characterStyle.color = Color.GRAY
 
 //        /* Пример 4 - Шрифты (вместе с примером 3 без 3.2) */
 //        docView.fontList.createFamily("sans_serif", Font(Typeface.SANS_SERIF))
@@ -121,13 +121,13 @@ class MainActivity : AppCompatActivity() {
 //                .addWordSpan(6, 8, CharacterStyle(bold = true))
 //                .addWordSpan(9, -1, CharacterStyle(italic = true))
 
-        /* Пример 7 - Рамки */
-        docView.document.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed " +
-                "do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n" +
-                "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut " +
-                "aliquip ex ea commodo consequat.\n" +
-                "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore " +
-                "eu fugiat nulla pariatur.")
+//        /* Пример 7 - Рамки */
+//        docView.document.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed " +
+//                "do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n" +
+//                "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut " +
+//                "aliquip ex ea commodo consequat.\n" +
+//                "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore " +
+//                "eu fugiat nulla pariatur.")
 //        docView.document[0].borderStyle
 //                .setPadding(Size.dp(8f))
 //                .setBorder(Border.dp(1f, Color.rgb(0xDC3023)))
@@ -144,14 +144,48 @@ class MainActivity : AppCompatActivity() {
 //                .setMargin(Size.dp(8f))
 //                .setBackgroundColor(Color.argb(0.1f, 0x26C281))
 
-        docView.document.paragraphStyle
-                .setTopIndent(Size.dp(4f))
-                .setFirstLeftIndent(Size.em(2f))
+        /* Пример 7.2 */
+        docView.document.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed " +
+                "do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n" +
+                "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut " +
+                "aliquip ex ea commodo consequat.\n" +
+                "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore " +
+                "eu fugiat nulla pariatur.")
+        docView.document[0].borderStyle
+                .setPadding(Size.dp(8f))
+                .setBorder(
+                        Border.dp(8f, Color.rgb(0xDC3023)),
+                        Border.dp(8f, Color.rgb(0x22A7F0)),
+                        Border.dp(8f, Color.rgb(0x26C281)),
+                        Border.dp(8f, Color.rgb(0x9B59B6)))
+                .setMargin(Size.dp(8f))
+                .setBackgroundColor(Color.argb(0.1f, 0xDC3023))
+        docView.document[1].borderStyle
+                .setPadding(Size.dp(8f))
+                .setBorder(
+                        null,
+                        null,
+                        null,
+                        Border.dp(8f, Color.rgb(0x22A7F0)))
+                .setMargin(Size.dp(8f))
+                .setBackgroundColor(Color.argb(0.1f, 0x22A7F0))
+        docView.document[2].borderStyle
+                .setPadding(Size.dp(8f))
+                .setBorder(
+                        Border.dp(8f, Color.TRANSPARENT),
+                        Border.dp(8f, Color.TRANSPARENT),
+                        Border.dp(8f, Color.TRANSPARENT),
+                        Border.dp(8f, Color.rgb(0x22A7F0)))
+                .setMargin(Size.dp(8f))
+                .setBackgroundColor(Color.argb(0.1f, 0x22A7F0))
+
+//        docView.document.paragraphStyle
+//                .setTopIndent(Size.dp(4f))
+//                .setFirstLeftIndent(Size.em(2f))
 
         docView.document.borderStyle
                 .setPadding(Size.dp(4f))
-                .setBorder(Border.dp(0.5f, Color.BLACK))
-//                .setBorder(Border.dp(0.3636f, Color.BLACK))
+                .setBorder(Border.px(1.0f, Color.BLACK))
                 .setMargin(Size.dp(4f))
 
 
