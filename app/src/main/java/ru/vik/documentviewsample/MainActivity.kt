@@ -2,13 +2,14 @@ package ru.vik.documentviewsample
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import kotlinx.android.synthetic.main.activity_main.view.*
 import ru.vik.documentview.DocumentView
 import ru.vik.utils.color.Color
 import ru.vik.utils.document.*
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var docView: DocumentView
+//    private lateinit var docView: DocumentView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -127,26 +128,31 @@ class MainActivity : AppCompatActivity() {
                 "aliquip ex ea commodo consequat.\n" +
                 "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore " +
                 "eu fugiat nulla pariatur.")
-        docView.document[0].blockStyle
-                .setPadding(Size.dp(8f))
-                .setBorder(Border.dp(1f, Color.rgb(0xDC3023)))
-                .setMargin(Size.dp(8f))
-                .setBackgroundColor(Color.argb(0.1f, 0xDC3023))
-        docView.document[1].blockStyle
-                .setPadding(Size.dp(8f))
-                .setBorder(Border.dp(1f, Color.rgb(0x22A7F0)))
-                .setMargin(Size.dp(8f))
-                .backgroundColor = Color.argb(0.1f, 0x22A7F0)
-        docView.document[2].blockStyle
-                .setPadding(Size.dp(8f))
-                .setBorder(Border.dp(1f, Color.rgb(0x26C281)))
-                .setMargin(Size.dp(8f))
-                .backgroundColor = Color.argb(0.1f, 0x26C281)
+//        docView.document[0].borderStyle
+//                .setPadding(Size.dp(8f))
+//                .setBorder(Border.dp(1f, Color.rgb(0xDC3023)))
+//                .setMargin(Size.dp(8f))
+//                .setBackgroundColor(Color.argb(0.1f, 0xDC3023))
+//        docView.document[1].borderStyle
+//                .setPadding(Size.dp(8f))
+//                .setBorder(Border.dp(1f, Color.rgb(0x22A7F0)))
+//                .setMargin(Size.dp(8f))
+//                .setBackgroundColor(Color.argb(0.1f, 0x22A7F0))
+//        docView.document[2].borderStyle
+//                .setPadding(Size.dp(8f))
+//                .setBorder(Border.dp(1f, Color.rgb(0x26C281)))
+//                .setMargin(Size.dp(8f))
+//                .setBackgroundColor(Color.argb(0.1f, 0x26C281))
 
-//        docView.document.setPadding(Size.dp(4f))
-//        docView.document.setBorder(Border.dp(0.5f, Color.BLACK))
-        docView.document.setBorder(Border.dp(0.3636f, Color.BLACK))
-        docView.document.setMargin(Size.dp(4f))
+        docView.document.paragraphStyle
+                .setTopIndent(Size.dp(4f))
+                .setFirstLeftIndent(Size.em(2f))
+
+        docView.document.borderStyle
+                .setPadding(Size.dp(4f))
+                .setBorder(Border.dp(0.5f, Color.BLACK))
+//                .setBorder(Border.dp(0.3636f, Color.BLACK))
+                .setMargin(Size.dp(4f))
 
 
 //        document.setText("<h1>DocumentView Sample</h1>\n" +
@@ -169,7 +175,7 @@ class MainActivity : AppCompatActivity() {
 //        val document = SimpleHtmlDocument()
 //        docView.document = document
 
-//        document.blockStyle.setPadding(Size.dp(4f))
+//        document.borderStyle.setPadding(Size.dp(4f))
 
 //        val testString = "Нормальный, <b>полужирный</b>, <i>курсив</i>, <u>подчёркнутый</u>, <s>зачёркнутый</s>, верхний<sup>индекс</sup>, нижний<sub>индекс</sub>."
 //        val testString2 = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
@@ -207,7 +213,7 @@ class MainActivity : AppCompatActivity() {
 ////        val document = SimpleHtmlDocument()
 //        docView.document = document
 //
-//        document.blockStyle.setPadding(Size.dp(4f))
+//        document.borderStyle.setPadding(Size.dp(4f))
 //
 //        document.addTag("h1", BaseHtmlDocument.TagConfig(
 //                type = Tag.Type.PARAGRAPH,
@@ -215,9 +221,9 @@ class MainActivity : AppCompatActivity() {
 //                    characterStyle.size = Size.em(1.6f)
 //                    characterStyle.bold = true
 //                },
-//                onSetBlockStyle = { tag, blockStyle ->
-//                    blockStyle.marginBottom = Size.dp(8f)
-//                    blockStyle.borderBottom = Border.dp(1f, Color.rgb(224, 224, 224))
+//                onSetBorderStyle = { tag, borderStyle ->
+//                    borderStyle.marginBottom = Size.dp(8f)
+//                    borderStyle.borderBottom = Border.dp(1f, Color.rgb(224, 224, 224))
 //                }
 //        ))
 //
@@ -227,9 +233,9 @@ class MainActivity : AppCompatActivity() {
 //                    characterStyle.size = Size.em(1.4f)
 //                    characterStyle.bold = true
 //                },
-//                onSetBlockStyle = { tag, blockStyle ->
-//                    blockStyle.marginBottom = Size.dp(8f)
-//                    blockStyle.borderBottom = Border.dp(1f, Color.rgb(224, 224, 224))
+//                onSetBorderStyle = { tag, borderStyle ->
+//                    borderStyle.marginBottom = Size.dp(8f)
+//                    borderStyle.borderBottom = Border.dp(1f, Color.rgb(224, 224, 224))
 //                }
 //        ))
 //
@@ -246,8 +252,8 @@ class MainActivity : AppCompatActivity() {
 //                        }
 //                    }
 //                },
-//                onSetBlockStyle = { tag, blockStyle ->
-//                    blockStyle.marginBottom = Size.dp(8f)
+//                onSetBorderStyle = { tag, borderStyle ->
+//                    borderStyle.marginBottom = Size.dp(8f)
 //                }
 //        ))
 //
@@ -261,22 +267,22 @@ class MainActivity : AppCompatActivity() {
 //                    paragraphStyle.align = ParagraphStyle.Align.JUSTIFY
 //                    paragraphStyle.firstLeftIndent = Size.em(2f)
 //                },
-//                onSetBlockStyle = { tag, blockStyle ->
-//                    blockStyle.marginBottom = Size.dp(8f)
-//                    blockStyle.setBorder(Border.dp(1f, Color.rgb(0x5B8930)))
-//                    blockStyle.setPadding(topAndBottom = null, leftAndRight = Size.dp(4f))
-//                    blockStyle.backgroundColor = Color.argb(64, 0x5B8930)
+//                onSetBorderStyle = { tag, borderStyle ->
+//                    borderStyle.marginBottom = Size.dp(8f)
+//                    borderStyle.setBorder(Border.dp(1f, Color.rgb(0x5B8930)))
+//                    borderStyle.setPadding(topAndBottom = null, leftAndRight = Size.dp(4f))
+//                    borderStyle.backgroundColor = Color.argb(64, 0x5B8930)
 //                }
 //        ))
 //
 //        document.addTag("blockquote", BaseHtmlDocument.TagConfig(
 //                type = Tag.Type.PARAGRAPH,
-//                onSetBlockStyle = { tag, blockStyle ->
-//                    blockStyle.marginBottom = Size.dp(8f)
-//                    blockStyle.marginLeft = Size.dp(16f)
-//                    blockStyle.borderLeft = Border.dp(4f, Color.rgb(0xE08A1E))
-//                    blockStyle.paddingLeft = Size.dp(16f)
-//                    blockStyle.backgroundColor = Color.argb(64, 0xE08A1E)
+//                onSetBorderStyle = { tag, borderStyle ->
+//                    borderStyle.marginBottom = Size.dp(8f)
+//                    borderStyle.marginLeft = Size.dp(16f)
+//                    borderStyle.borderLeft = Border.dp(4f, Color.rgb(0xE08A1E))
+//                    borderStyle.paddingLeft = Size.dp(16f)
+//                    borderStyle.backgroundColor = Color.argb(64, 0xE08A1E)
 //                },
 //                onSetCharacterStyle = { tag, characterStyle ->
 //                    characterStyle.backgroundColor = Color.rgb(64, 64, 64)
@@ -360,18 +366,18 @@ class MainActivity : AppCompatActivity() {
 //                "<blockquote>«Наши люди в булочную на такси не ездят!»</blockquote>")
 
 //        document.getTagConfig("blockquote")?.let {
-//            it.onSetBlockStyle = { tag, blockStyle ->
-//                blockStyle.setMargin(Size.dp(8f), null, Size.dp(8f), Size.em(1f))
-//                blockStyle.borderLeft = Border.dp(4f, Color.rgb(192, 192, 192))
-//                blockStyle.paddingLeft = Size.em(1f)
-//                blockStyle.backgroundColor = Color.rgb(224, 224, 224)
-////                it.onSetBlockStyle?.invoke(tag, blockStyle)
+//            it.onSetBorderStyle = { tag, borderStyle ->
+//                borderStyle.setMargin(Size.dp(8f), null, Size.dp(8f), Size.em(1f))
+//                borderStyle.borderLeft = Border.dp(4f, Color.rgb(192, 192, 192))
+//                borderStyle.paddingLeft = Size.em(1f)
+//                borderStyle.backgroundColor = Color.rgb(224, 224, 224)
+////                it.onSetBorderStyle?.invoke(tag, borderStyle)
 //            }
 //
 //            it.onSetCharacterStyle = { tag, characterStyle ->
 //                characterStyle.backgroundColor = Color.rgb(128, 128, 128)
 //                characterStyle.italic = true
-//                document.setCSFromAttributes(tag, characterStyle)
+//                document.setCharacterStyleFromAttributes(tag, characterStyle)
 //            }
 //        }
 
