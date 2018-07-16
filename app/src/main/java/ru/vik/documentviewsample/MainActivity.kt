@@ -1,11 +1,8 @@
 package ru.vik.documentviewsample
 
-import android.graphics.Typeface
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import ru.vik.documentview.DocumentView
-import ru.vik.documentview.Font
-import ru.vik.documentview.FontList
 import ru.vik.utils.color.Color
 import ru.vik.utils.document.*
 
@@ -19,25 +16,25 @@ class MainActivity : AppCompatActivity() {
 
         val docView: DocumentView = findViewById(R.id.docView)
 
-        /* Пример 1 - Простой пример */
-        docView.document.setText(
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod ...")
-        docView.document
-                .addSpan(0, 5, CharacterStyle(color = Color.RED))
-                .addSpan(6, 11, CharacterStyle(bold = true))
-                .addSpan(12, 17, CharacterStyle(italic = true))
-                .addSpan(18, 21, CharacterStyle(bold = true, italic = true))
-                .addSpan(22, 26, CharacterStyle(underline = true))
-                .addSpan(28, 39, CharacterStyle(strike = true))
-                .addSpan(50, 55, CharacterStyle(baselineShift = Size.em(-0.4f),
-                        size = Size.em(0.85f)))
-                .addSpan(60, 63, CharacterStyle(baselineShift = Size.em(0.25f),
-                        size = Size.em(0.85f)))
-                .addSpan(64, 71, CharacterStyle(scaleX = 0.6f))
+//        /* Пример 1 - Простой пример */
+//        docView.document.setText(
+//                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod ...")
+//        docView.document
+//                .addSpan(0, 5, CharacterStyle(backgroundColor = Color.RED))
+//                .addSpan(6, 11, CharacterStyle(bold = true))
+//                .addSpan(12, 17, CharacterStyle(italic = true))
+//                .addSpan(18, 21, CharacterStyle(bold = true, italic = true))
+//                .addSpan(22, 26, CharacterStyle(underline = true))
+//                .addSpan(28, 39, CharacterStyle(strike = true))
+//                .addSpan(50, 55, CharacterStyle(baselineShift = Size.em(-0.4f),
+//                        size = Size.em(0.85f)))
+//                .addSpan(60, 63, CharacterStyle(baselineShift = Size.em(0.25f),
+//                        size = Size.em(0.85f)))
+//                .addSpan(64, 71, CharacterStyle(scaleX = 0.6f))
 
 //        /* Пример 1.2 */
 //        docView.document
-//                .addWordSpan(1, CharacterStyle(color = Color.RED))
+//                .addWordSpan(1, CharacterStyle(backgroundColor = Color.RED))
 //                .addWordSpan(2, CharacterStyle(bold = true))
 //                .addWordSpan(3, CharacterStyle(italic = true))
 //                .addWordSpan(4, CharacterStyle(bold = true, italic = true))
@@ -57,30 +54,29 @@ class MainActivity : AppCompatActivity() {
 
 //        /* Пример 2.2 */
 //        docView.document
-//                .addWordSpan(1, 3, CharacterStyle(color = Color.RED))
-//                .addWordSpan(3, -1, CharacterStyle(color = Color.GREEN))
+//                .addWordSpan(1, 3, CharacterStyle(backgroundColor = Color.RED))
+//                .addWordSpan(3, -1, CharacterStyle(backgroundColor = Color.GREEN))
 
 //        /* Пример 3 - Абзацы */
 //        docView.document.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed " +
 //                "do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n" +
 //                "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut " +
-//                "aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit " +
-//                "in voluptate velit esse cillum dolore eu fugiat nulla pariatur.\n" +
-//                "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia " +
-//                "deserunt mollit anim id est laborum.")
+//                "aliquip ex ea commodo consequat.\n" +
+//                "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore " +
+//                "eu fugiat nulla pariatur.")
 //        docView.document[0]
-//                .addSpan(CharacterStyle(color = Color.RED), 0, 1)
+//                .addSpan(0, 1, CharacterStyle(backgroundColor = Color.RED))
 //        docView.document[1]
-//                .addSpan(CharacterStyle(color = Color.RED), 0, 1)
+//                .addSpan(0, 1, CharacterStyle(backgroundColor = Color.RED))
 //        docView.document[2]
-//                .addSpan(CharacterStyle(color = Color.RED), 0, 1)
+//                .addSpan(0, 1, CharacterStyle(backgroundColor = Color.RED))
 
 //        /* Пример 3.2 */
 //        docView.document[0].characterStyle.italic = true
 //        docView.document[1].characterStyle.size = Size.em(0.8f)
-//        docView.document[2].characterStyle.color = Color.GRAY
+//        docView.document[2].characterStyle.backgroundColor = Color.GRAY
 
-//        /* Пример 4 - Шрифты (вместе с примером 3) */
+//        /* Пример 4 - Шрифты (вместе с примером 3 без 3.2) */
 //        docView.fontList.createFamily("sans_serif", Font(Typeface.SANS_SERIF))
 //        docView.fontList.createFamily("serif", Font(Typeface.SERIF))
 //        docView.fontList.createFamily("mono", Font(Typeface.MONOSPACE))
@@ -124,9 +120,33 @@ class MainActivity : AppCompatActivity() {
 //                .addWordSpan(6, 8, CharacterStyle(bold = true))
 //                .addWordSpan(9, -1, CharacterStyle(italic = true))
 
-        docView.document.blockStyle.setPadding(Size.dp(4f))
-        docView.document.blockStyle.setBorder(Border.dp(0.5f, Color.BLACK))
-        docView.document.blockStyle.setMargin(Size.dp(4f))
+        /* Пример 7 - Рамки */
+        docView.document.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed " +
+                "do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n" +
+                "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut " +
+                "aliquip ex ea commodo consequat.\n" +
+                "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore " +
+                "eu fugiat nulla pariatur.")
+        docView.document[0].blockStyle
+                .setPadding(Size.dp(8f))
+                .setBorder(Border.dp(1f, Color.rgb(0xDC3023)))
+                .setMargin(Size.dp(8f))
+                .setBackgroundColor(Color.argb(0.1f, 0xDC3023))
+        docView.document[1].blockStyle
+                .setPadding(Size.dp(8f))
+                .setBorder(Border.dp(1f, Color.rgb(0x22A7F0)))
+                .setMargin(Size.dp(8f))
+                .backgroundColor = Color.argb(0.1f, 0x22A7F0)
+        docView.document[2].blockStyle
+                .setPadding(Size.dp(8f))
+                .setBorder(Border.dp(1f, Color.rgb(0x26C281)))
+                .setMargin(Size.dp(8f))
+                .backgroundColor = Color.argb(0.1f, 0x26C281)
+
+//        docView.document.setPadding(Size.dp(4f))
+//        docView.document.setBorder(Border.dp(0.5f, Color.BLACK))
+        docView.document.setBorder(Border.dp(0.3636f, Color.BLACK))
+        docView.document.setMargin(Size.dp(4f))
 
 
 //        document.setText("<h1>DocumentView Sample</h1>\n" +
@@ -245,7 +265,7 @@ class MainActivity : AppCompatActivity() {
 //                    blockStyle.marginBottom = Size.dp(8f)
 //                    blockStyle.setBorder(Border.dp(1f, Color.rgb(0x5B8930)))
 //                    blockStyle.setPadding(topAndBottom = null, leftAndRight = Size.dp(4f))
-//                    blockStyle.color = Color.argb(64, 0x5B8930)
+//                    blockStyle.backgroundColor = Color.argb(64, 0x5B8930)
 //                }
 //        ))
 //
@@ -256,10 +276,10 @@ class MainActivity : AppCompatActivity() {
 //                    blockStyle.marginLeft = Size.dp(16f)
 //                    blockStyle.borderLeft = Border.dp(4f, Color.rgb(0xE08A1E))
 //                    blockStyle.paddingLeft = Size.dp(16f)
-//                    blockStyle.color = Color.argb(64, 0xE08A1E)
+//                    blockStyle.backgroundColor = Color.argb(64, 0xE08A1E)
 //                },
 //                onSetCharacterStyle = { tag, characterStyle ->
-//                    characterStyle.color = Color.rgb(64, 64, 64)
+//                    characterStyle.backgroundColor = Color.rgb(64, 64, 64)
 //                    characterStyle.italic = true
 //                }
 //        ))
@@ -311,7 +331,7 @@ class MainActivity : AppCompatActivity() {
 //        document.addTag("red", BaseHtmlDocument.TagConfig(
 //                type = Tag.Type.CHARACTER,
 //                onSetCharacterStyle = { tag, characterStyle ->
-//                    characterStyle.color = Color.rgb(0xF22613)
+//                    characterStyle.backgroundColor = Color.rgb(0xF22613)
 //                }
 //        ))
 //
@@ -344,12 +364,12 @@ class MainActivity : AppCompatActivity() {
 //                blockStyle.setMargin(Size.dp(8f), null, Size.dp(8f), Size.em(1f))
 //                blockStyle.borderLeft = Border.dp(4f, Color.rgb(192, 192, 192))
 //                blockStyle.paddingLeft = Size.em(1f)
-//                blockStyle.color = Color.rgb(224, 224, 224)
+//                blockStyle.backgroundColor = Color.rgb(224, 224, 224)
 ////                it.onSetBlockStyle?.invoke(tag, blockStyle)
 //            }
 //
 //            it.onSetCharacterStyle = { tag, characterStyle ->
-//                characterStyle.color = Color.rgb(128, 128, 128)
+//                characterStyle.backgroundColor = Color.rgb(128, 128, 128)
 //                characterStyle.italic = true
 //                document.setCSFromAttributes(tag, characterStyle)
 //            }
