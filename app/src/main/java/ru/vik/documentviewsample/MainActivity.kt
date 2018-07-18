@@ -1,9 +1,11 @@
 package ru.vik.documentviewsample
 
+import android.graphics.Typeface
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import kotlinx.android.synthetic.main.activity_main.view.*
 import ru.vik.documentview.DocumentView
+import ru.vik.documentview.Font
+import ru.vik.documentview.FontList
 import ru.vik.utils.color.Color
 import ru.vik.utils.document.*
 
@@ -108,9 +110,12 @@ class MainActivity : AppCompatActivity() {
 //        /* Пример 6 */
 //        val fontList = FontList()
 //        fontList["georgia"] = Font(Typeface.createFromAsset(this.assets, "fonts/georgia.ttf")!!)
-//        fontList["georgia:bold"] = Font(Typeface.createFromAsset(this.assets, "fonts/georgiab.ttf")!!)
-//        fontList["georgia:italic"] = Font(Typeface.createFromAsset(this.assets, "fonts/georgiai.ttf")!!)
-//        fontList["georgia:bold_italic"] = Font(Typeface.createFromAsset(this.assets, "fonts/georgiaz.ttf")!!)
+//        fontList["georgia:bold"] =
+//                Font(Typeface.createFromAsset(this.assets, "fonts/georgiab.ttf")!!)
+//        fontList["georgia:italic"] =
+//                Font(Typeface.createFromAsset(this.assets, "fonts/georgiai.ttf")!!)
+//        fontList["georgia:bold_italic"] =
+//                Font(Typeface.createFromAsset(this.assets, "fonts/georgiaz.ttf")!!)
 //
 //        docView.fontList = fontList
 //        docView.document.characterStyle.font = "georgia"
@@ -144,111 +149,216 @@ class MainActivity : AppCompatActivity() {
 //                .setMargin(Size.dp(8f))
 //                .setBackgroundColor(Color.argb(0.1f, 0x26C281))
 
-        /* Пример 7.2 */
-        docView.document.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed " +
-                "do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n" +
-                "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut " +
-                "aliquip ex ea commodo consequat.\n" +
-                "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore " +
-                "eu fugiat nulla pariatur.")
-        docView.document[0].borderStyle
-                .setPadding(Size.dp(8f))
-                .setBorder(
-                        Border.dp(8f, Color.rgb(0xDC3023)),
-                        Border.dp(8f, Color.rgb(0x22A7F0)),
-                        Border.dp(8f, Color.rgb(0x26C281)),
-                        Border.dp(8f, Color.rgb(0x9B59B6)))
-                .setMargin(Size.dp(8f))
-                .setBackgroundColor(Color.argb(0.1f, 0xDC3023))
-        docView.document[1].borderStyle
-                .setPadding(Size.dp(8f))
-                .setBorder(
-                        null,
-                        null,
-                        null,
-                        Border.dp(8f, Color.rgb(0x22A7F0)))
-                .setMargin(Size.dp(8f))
-                .setBackgroundColor(Color.argb(0.1f, 0x22A7F0))
-        docView.document[2].borderStyle
-                .setPadding(Size.dp(8f))
-                .setBorder(
-                        Border.dp(8f, Color.TRANSPARENT),
-                        Border.dp(8f, Color.TRANSPARENT),
-                        Border.dp(8f, Color.TRANSPARENT),
-                        Border.dp(8f, Color.rgb(0x22A7F0)))
-                .setMargin(Size.dp(8f))
-                .setBackgroundColor(Color.argb(0.1f, 0x22A7F0))
+//        /* Пример 7.2 */
+//        docView.document.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed " +
+//                "do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n" +
+//                "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut " +
+//                "aliquip ex ea commodo consequat.\n" +
+//                "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore " +
+//                "eu fugiat nulla pariatur.")
+//        docView.document[0].borderStyle
+//                .setPadding(Size.dp(8f))
+//                .setBorderTop(Border.dp(8f, Color.rgb(0xDC3023)))
+//                .setBorderRight(Border.dp(8f, Color.rgb(0x22A7F0)))
+//                .setBorderBottom(Border.dp(8f, Color.rgb(0x26C281)))
+//                .setBorderLeft(Border.dp(8f, Color.rgb(0x9B59B6)))
+//                .setMargin(Size.dp(4f))
+//                .setBackgroundColor(Color.argb(0.2f, 0xDC3023))
+//        docView.document[1].borderStyle
+//                .setPadding(Size.dp(8f))
+//                .setBorderLeft(Border.dp(8f, Color.rgb(0x22A7F0)))
+//                .setMargin(Size.dp(4f))
+//                .setBackgroundColor(Color.argb(0.2f, 0x22A7F0))
+//        docView.document[2].borderStyle
+//                .setPadding(Size.dp(8f))
+//                .setBorder(
+//                        Border.dp(8f, Color.TRANSPARENT),
+//                        Border.dp(8f, Color.rgb(0x26C281)))
+//                .setMargin(Size.dp(4f))
+//                .setBackgroundColor(Color.argb(0.2f, 0x26C281))
+//
+//        docView.document.borderStyle
+//                .setPadding(Size.dp(4f))
+//                .setBorder(Border.dp(4.0f, Color.rgb(0xF9690E)))
+//                .setMargin(Size.dp(4f))
+//                .setBackgroundColor(Color.argb(0.1f, 0xF9690E))
 
+//        /* Пример 8 - Оформление абзацев */
+//        docView.document.setText("Lorem ipsum\n" +
+//                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod " +
+//                "tempor incididunt ut labore et dolore magna aliqua.\n" +
+//                "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi " +
+//                "ut aliquip ex ea commodo consequat.\n" +
+//                "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore " +
+//                "eu fugiat nulla pariatur.\n" +
+//                "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia " +
+//                "deserunt mollit anim id est laborum.")
+//
+////        /* Пример 10 */
+////        val string = "Lorem ipsum\n" +
+////                "Lo~rem ip~sum do~lor sit amet, con~sec~te~tur adi~pis~cing elit, sed do " +
+////                "eius~mod tem~por in~ci~di~dunt ut la~bo~re et do~lo~re mag~na ali~qua.\n" +
+////                "Ut enim ad mi~nim ve~niam, qu~is nos~t~rud exer~ci~ta~tion ul~lam~co la~bo~ris " +
+////                "ni~si ut ali~qu~ip ex ea com~mo~do con~se~quat.\n" +
+////                "Duis aute iru~re do~lor in rep~re~hen~de~rit in vo~lup~ta~te ve~lit es~se " +
+////                "cil~lum do~lo~re eu fu~gi~at nul~la pa~ria~tur.\n" +
+////                "Ex~cep~te~ur sint oc~cae~cat cu~pi~da~tat non pro~i~dent, sunt in cul~pa qui " +
+////                "of~fi~cia de~se~runt mol~lit anim id est la~bo~rum."
+////        docView.document.setText(string.replace('~', '\u00AD'))
+//
+//        docView.document.characterStyle
+//                .setSize(Size.percent(120f))
 //        docView.document.paragraphStyle
-//                .setTopIndent(Size.dp(4f))
+//                .setTopIndent(Size.dp(8f)) // Отступ сверху, общий для всех абзацев
+//
+//        docView.document[0].characterStyle
+//                .setSize(Size.em(2f))
+//        docView.document[0].paragraphStyle
+//                .setAlign(ParagraphStyle.Align.CENTER)
+//                .setTopIndent(Size.dp(0f))
+//        docView.document[0].borderStyle
+//                .setBorderBottom(Border.dp(1f, Color.LTGRAY))
+//                .setMarginBottom(Size.dp(4f))
+//        docView.document[1].paragraphStyle
+//                .setAlign(ParagraphStyle.Align.LEFT)
 //                .setFirstLeftIndent(Size.em(2f))
+//        docView.document[2].paragraphStyle
+//                .setAlign(ParagraphStyle.Align.RIGHT)
+//        docView.document[3].paragraphStyle
+//                .setAlign(ParagraphStyle.Align.JUSTIFY)
+//        docView.document[4].paragraphStyle
+//                .setAlign(ParagraphStyle.Align.JUSTIFY)
+//                .setLastAlign(ParagraphStyle.Align.CENTER)
 
-        docView.document.borderStyle
-                .setPadding(Size.dp(4f))
-                .setBorder(Border.px(1.0f, Color.BLACK))
-                .setMargin(Size.dp(4f))
-
-
-//        document.setText("<h1>DocumentView Sample</h1>\n" +
-//                "<p>$testString</p>\n")
-////                "<p font='serif'>$testString</p>\n" +
-////                "<p font='mono'>$testString</p>\n" +
-////                "<p align='justify'>$testString2</p>")
-
-//        val fontList = FontList()
-//        fontList.createFamily("sans_serif", Font(Typeface.SANS_SERIF))
-//        fontList.createFamily("serif", Font(Typeface.SERIF))
-//        fontList.createFamily("mono", Font(Typeface.MONOSPACE))
+//        /* Пример 8.2 */
+//        docView.document.setText("Куда ещё тянется провод\u2028из гроба того?\n" +
+//                "Нет, Сталин не умер. Считает он смерть поправимостью.\n" +
+//                "Мы вынесли из мавзолея его.\n" +
+//                "Но как из наследников Сталина Сталина вынести?")
 //
-//        docView.fontList = fontList
+//        docView.document.characterStyle
+//                .setFont("georgia")
+//                .setItalic(true)
 //
-//        docView.characterStyle.font = "sans_serif"
-//        docView.characterStyle.size = Size.dp(16f)
-//        docView.paragraphStyle.firstLeftIndent = Size.dp(32f)
+//        docView.document.paragraphStyle
+//                .setLeftIndent(Size.em(2f))
+//                .setFirstLeftIndent(Size.em(-2f))
+//                .setFirstAlign(ParagraphStyle.Align.LEFT)
+//                .setAlign(ParagraphStyle.Align.RIGHT)
 
-//        val document = SimpleHtmlDocument()
-//        docView.document = document
 
-//        document.borderStyle.setPadding(Size.dp(4f))
-
-//        val testString = "Нормальный, <b>полужирный</b>, <i>курсив</i>, <u>подчёркнутый</u>, <s>зачёркнутый</s>, верхний<sup>индекс</sup>, нижний<sub>индекс</sub>."
-//        val testString2 = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-
-//        document.setText("<h1>DocumentView Sample</h1>\n" +
-//                "<p>$testString</p>\n")
-////                "<p font='serif'>$testString</p>\n" +
-////                "<p font='mono'>$testString</p>\n" +
-////                "<p align='justify'>$testString2</p>")
-
-//        docView = findViewById(R.id.docView)
-//        //docView.baselineMode = DocumentView.Baseline.INDENT
-//
-//        val fontList = FontList()
-//        fontList.createFamily("sans_serif", Font(Typeface.SANS_SERIF))
-//        fontList["sans_serif2"] = Font(Typeface.SANS_SERIF)
-//
-//        fontList.createFamily("serif", Font(Typeface.SERIF))
-//        fontList["serif2"] = Font(Typeface.SERIF)
-//
-//        fontList.createFamily("mono", Font(Typeface.MONOSPACE))
-//        fontList["mono2"] = Font(Typeface.MONOSPACE)
-//
-//        fontList["ponomar"] = Font(
+//        // Пример 9 - коррекция шрифтов
+//        docView.fontList["ponomar"] = Font(
 //                typeface = Typeface.createFromAsset(this.assets, "fonts/PonomarUnicode.ttf")!!,
 //                hyphen = '_',
 //                scale = 1.2f)
 //
-//        docView.fontList = fontList
-//        docView.characterStyle.font = "sans_serif"
-//        docView.characterStyle.size = Size.dp(16f)
-////        docView.characterStyle.scaleX = 0.85f
+//        docView.fontList.createFamily("serif", Font(Typeface.SERIF))
+//        docView.fontList["ponomar"] = Font(
+//                typeface = Typeface.createFromAsset(this.assets, "fonts/PonomarUnicode.ttf")!!)
+//        docView.fontList["ponomar"] = Font(
+//                typeface = Typeface.createFromAsset(this.assets, "fonts/PonomarUnicode.ttf")!!,
+//                scale = 1.2f)
+//        docView.fontList["ponomar"] = Font(
+//                typeface = Typeface.createFromAsset(this.assets, "fonts/PonomarUnicode.ttf")!!,
+//                ascentRatio = 0.8f,
+//                descentRatio = 0.8f,
+//                scale = 1.2f)
 //
-//        val document = BaseHtmlDocument()
-////        val document = SimpleHtmlDocument()
-//        docView.document = document
+//        docView.document.setText("В начале сотворил Бог - Въ нача́лѣ сотворѝ бг҃ъ")
+//        docView.document.addWordSpan(1, 4, CharacterStyle(font = "serif"))
+//        docView.document.addWordSpan(5, -1, CharacterStyle(font = "ponomar"))
+
+//        // Пример 10.2
+//        docView.fontList["ponomar"] = Font(
+//                typeface = Typeface.createFromAsset(this.assets, "fonts/PonomarUnicode.ttf")!!,
+//                hyphen = '_',
+//                ascentRatio = 0.9f,
+//                descentRatio = 0.9f,
+//                scale = 1.2f)
 //
-//        document.borderStyle.setPadding(Size.dp(4f))
+//        val text =
+//                "Прї~и~ди́~те ко мнѣ̀ всѝ трꙋж~да́ю~щї~и~сѧ и҆ ѡ҆б~ре~ме~не́н~нїи, и҆ а҆́зъ " +
+//                        "оу҆по~ко́ю вы̀. Воз̾~ми́~те и҆́го моѐ на се~бѐ, и҆ на~ꙋ~чи́~те~сѧ ѿ ме~нѐ, ꙗ҆́кѡ " +
+//                        "кро́~токъ є҆́смь и҆ сми~ре́нъ се́рд~цемъ, и҆ ѡ҆б~рѧ́~ще~те по~ко́й дꙋ~ша́мъ " +
+//                        "ва́~шымъ. И҆́го бо моѐ бла́~го, и҆ бре́~мѧ моѐ лег~ко̀ є҆́сть."
+//        docView.document.setText(text.replace('~', '\u00AD'))
+//        docView.document.characterStyle.font = "ponomar"
+//        docView.document.paragraphStyle
+//                .setFirstLeftIndent(Size.em(1f))
+//                .setAlign(ParagraphStyle.Align.JUSTIFY)
+//        docView.document.addSpan(0, 1, CharacterStyle(color = Color.RED))
+
+//        /* Пример 11 - базовые линии */
+//        val string = "Lo~rem ip~sum do~lor sit amet, con~sec~te~tur adi~pis~cing elit, " +
+//                "sed do eius~mod tem~por in~ci~di~dunt ut la~bo~re et do~lo~re mag~na ali~qua."
+//        docView.document.setText(string.replace('~', '\u00AD'))
 //
+//        docView.baselineMode = DocumentView.Baseline.PARAGRAPH
+
+        /* Пример 11.2 */
+        val string = "Lorem ipsum\n" +
+                "Lo~rem ip~sum do~lor sit amet, con~sec~te~tur adi~pis~cing elit, sed do " +
+                "eius~mod tem~por in~ci~di~dunt ut la~bo~re et do~lo~re mag~na ali~qua.\n" +
+                "Ut enim ad mi~nim ve~niam, qu~is nos~t~rud exer~ci~ta~tion ul~lam~co la~bo~ris " +
+                "ni~si ut ali~qu~ip ex ea com~mo~do con~se~quat.\n" +
+                "Duis1 aute2 iru~re3 do~lor4 in5 rep~re~hen~de~rit6 in7 vo~lup~ta~te8 ve~lit9 es~se10 " +
+                "cil~lum11 do~lo~re12 eu13 fu~gi~at14 nul~la15 pa~ria~tur16.\n" +
+                "Ex~cep~te~ur sint oc~cae~cat cu~pi~da~tat non pro~i~dent, sunt in cul~pa* qui " +
+                "of~fi~cia de~se~runt mol~lit anim id est la~bo~rum."
+        docView.document.setText(string.replace('~', '\u00AD'))
+
+        docView.baselineMode = DocumentView.Baseline.VIEW
+        docView.baselineColor = Color.rgb(0x4B77BE)
+
+        docView.document.characterStyle
+                .setSize(Size.dp(18f))
+        docView.document.paragraphStyle
+                .setAlign(ParagraphStyle.Align.JUSTIFY)
+                .setFirstLeftIndent(Size.dp(24f))
+
+        docView.document[0].characterStyle
+                .setSize(Size.em(1.6f))
+        docView.document[0].paragraphStyle
+                .setAlign(ParagraphStyle.Align.CENTER)
+                .setFirstLeftIndent(Size.dp(0f))
+                .setTopIndent(Size.dp(0f))
+                .setBottomIndent(Size.em(0.5f))
+        docView.document[1].paragraphStyle
+                .setFirstLeftIndent(Size.em(0f))
+
+//        docView.document[2]
+//                .addWordSpan(10, CharacterStyle(
+//                        size = Size.em(1.4f)))
+//        docView.document[3]
+//                .addSpan(Regex("""\d+"""), -1, CharacterStyle(
+//                        baselineShift = Size.em(0.25f),
+//                        size = Size.em(0.7f)))
+//        docView.document[4]
+//                .addSpan(Regex("""\*"""), CharacterStyle(
+//                        baselineShift = Size.em(-0.4f),
+//                        size = Size.em(0.85f)))
+
+        // Пример 11.3
+        docView.document[2]
+                .addWordSpan(10, CharacterStyle(
+                        size = Size.em(1.4f)))
+        docView.document[3]
+                .addSpan(Regex("""\d+"""), -1, CharacterStyle(
+                        verticalAlign = CharacterStyle.VAlign.BOTTOM,
+                        size = Size.em(0.6f)))
+        docView.document[4]
+                .addSpan(Regex("""\*"""), CharacterStyle(
+                        verticalAlign = CharacterStyle.VAlign.TOP,
+                        size = Size.em(0.7f)))
+
+        docView.document.borderStyle
+                .setPadding(Size.dp(8f))
+                .setBorder(Border.px(1.0f, Color.BLACK))
+                .setMargin(Size.dp(4f))
+
+
+
 //        document.addTag("h1", BaseHtmlDocument.TagConfig(
 //                type = Tag.Type.PARAGRAPH,
 //                onSetCharacterStyle = { tag, characterStyle ->
@@ -393,10 +503,10 @@ class MainActivity : AppCompatActivity() {
 //                "сми\u00ADре́нъ се́рд\u00ADцемъ, и҆ ѡ҆б\u00ADрѧ́\u00ADще\u00ADте по\u00ADко́й " +
 //                "дꙋ\u00ADша́мъ ва́\u00ADшымъ. <red>И҆́</red>го бо моѐ бла́\u00ADго, и҆ бре́\u00ADмѧ моѐ " +
 //                "лег\u00ADко̀ є҆́сть.</csl>\n" +
-//                "<p>Text<sup>sup</sup>, text<sub>sub</sub></p>\n" +
-//                "<p>Text<sup>sup<sup>sup</sup></sup>, text<sub>sub<sub>sub</sub></sub></p>\n" +
+//                "<p>Text<sup>sup</sup>, textBuilder<sub>sub</sub></p>\n" +
+//                "<p>Text<sup>sup<sup>sup</sup></sup>, textBuilder<sub>sub<sub>sub</sub></sub></p>\n" +
 //                "<p>Text<sup>sup<sub>sub<sup>sup<sub>sub</sub></sup></sub></sup>, " +
-//                "text<sub>sub<sup>sup<sub>sub<sup>sup</sup></sub></sup></sub>.</p>\n" +
+//                "textBuilder<sub>sub<sup>sup<sub>sub<sup>sup</sup></sub></sup></sub>.</p>\n" +
 //                "<blockquote>«Наши люди в булочную на такси не ездят!»</blockquote>")
 
 //        document.getTagConfig("blockquote")?.let {
@@ -414,72 +524,5 @@ class MainActivity : AppCompatActivity() {
 //                document.setCharacterStyleFromAttributes(tag, characterStyle)
 //            }
 //        }
-
-//        val sample = "Бл҃го\u00ADсло\u00ADвѝ дꙋ\u00ADшѐ моѧ̀ гдⷭ҇а: гдⷭ҇и бж҃е мо́й, " +
-//                "воз\u00ADве\u00ADли́\u00ADчил\u00ADсѧ є҆сѝ ѕѣ\u00ADлѡ̀, во " +
-//                "и҆с\u00ADпо\u00ADвѣ́\u00ADда\u00ADнїе и҆ въ ве\u00ADле\u00ADлѣ́\u00ADпо\u00ADтꙋ " +
-//                "ѡ҆б\u00ADле́кл\u00ADсѧ є҆сѝ.<br>" +
-//                "Ѡ҆дѣ\u00ADѧ́й\u00ADсѧ свѣ́\u00ADтомъ ꙗ҆́кѡ ри́\u00ADзою, " +
-//                "прос\u00ADти\u00ADра́\u00ADѧй нб҃о ꙗ҆́кѡ ко́\u00ADжꙋ.<br>" +
-//                "Пок\u00ADры\u00ADва́\u00ADѧй во\u00ADда́\u00ADми пре\u00ADвы́с\u00ADпрєн\u00ADнѧѧ " +
-//                "своѧ̑, по\u00ADла\u00ADга́\u00ADѧй ѻ҆́б\u00ADла\u00ADки на " +
-//                "вос\u00ADхож\u00ADде́\u00ADнїе своѐ, хо\u00ADдѧ́й на " +
-//                "кри\u00ADлꙋ̀ вѣ́т\u00ADрє\u00ADню."
-//
-//        document.setText("Hello,World!<b>Hello,World!</b>Hello,World!Helló,World!Hello,World!Hello,World!" +
-//                        "Hello,World!Hello,World!Hello,World!Hello,World!Hello,World!Hello,World!\n" +
-//
-//                        "<blockquote>Hello, World! Hello, World! Hello, World! Hello, World! Hello, " +
-//                        "World! Hello, World! Hello, World!<sub>Hello, World!<sub>Hello, World!" +
-//                        "<sub>Hello, world!</sub></sub></sub> Hello, World! Hello, World! " +
-//                        "Hello, World! Hello, World! Hello, World! Hello, World!</blockquote>\n" +
-//
-//                        "<div>Hello, World! Hello, World! Hello, World! Hello, World! Hello, World! " +
-//                        "Hello, World! Hello, World!<sup>Hello, World!<sup>Hello, World!<sup>Hello, " +
-//                        "world!</sup></sup></sup> Hello, World! Hello, World! Hello, World! Hello, " +
-//                        "World! Hello, World! Hello, World!</div>\n" +
-//
-//                        "<div>Hello, World! Hello, World! Hello, World! Hello, World! Hello, World! " +
-//                        "Hello, World! Hello, World!<sup size=100%>Hello, World!<sup>Hello, World!" +
-//                        "<sup>Hello, world!</sup></sup></sup> Hello, World! Hello, World! Hello, " +
-//                        "World! Hello, World! Hello, World! Hello, World!</div>\n" +
-//
-//                        "<div lang=csl>\n" +
-//                        "<p align=left firstLeftIndent=50%>$sample</p>\n" +
-//                        "<p align=left>$sample</p>\n" +
-//                        "<p align=right>$sample</p>\n" +
-//                        "<p align=center>$sample</p>\n" +
-//                        "<p align=justify firstLeftIndent=50%>$sample</p>\n" +
-//                        "<p align=justify>$sample</p>\n" +
-//                        "<p align=justify lastAlign=center>$sample</p>\n" +
-//                        "<p align=justify lastAlign=right>$sample</p>\n" +
-//                        "<p align=justify lastAlign=justify>$sample</p>\n" +
-//                        "<p align=justify lastAlign=center firstLeftIndent=10% " +
-//                        "firstRightIndent=10%>$sample</p>\n" +
-//                        "</div>\n" +
-//
-//                        "<div>\n" +
-//                        "<p bgColor='#f77' firstLeftIndent=2em>АААА <b>ББББ <i>ВВВВ <s>ГГГГ</b> ДДДД</i> " +
-//                        "ЕЕЕЕ</s> <font size=30>Ё<b>ЁЁЁ</b></font> ЖЖЖЖ ЗЗЗЗ ИИИИ ЙЙЙЙ КККК ЛЛЛЛ</p>\n" +
-//                        "<p bgColor='rgb(128,255,128)' leftIndent=2em rightIndent=2em>ЙА\u0301ДУ " +
-//                        "ЙА́\u00ADДУ ЙА́\u00ADДУ ЙА́\u00ADДУ ЙА́\u00ADДУ ЙА́\u00ADДУ ЙА́\u00ADДУ ЙА́\u00ADДУ " +
-//                        "ЙА́\u00ADДУ ЙА́Д\u00ADУ ЙА́Д\u00ADУ ЙА́\u00ADДУ ЙА́\u00ADДУ ЙА́\u00ADДУ ЙА́\u00ADДУ " +
-//                        "ЙА́\u00ADДУ ЙА́\u00ADДУ ЙА́\u00ADДУ</p>\n" +
-//                        "<p bgColor='rgb(128,128,255)' firstLeftIndent=-2em leftIndent=2em>аааааа " +
-//                        "бббббб вввввв гггггг дддддд ееееее ёёёёёё жжжжжж зззззз ииииии йййййй кккккк " +
-//                        "лллллл</p>\n" +
-//                        "<div bgColor='#77f' lang='csl'>\n" +
-//                        "<p bgColor='rgba(255,128,0,0.5)'>н,<i>и,<b>би,<s>бис,</i>бс,</b>с</s></p>\n" +
-//                        "<p bgColor='#00ff00'>ЙА\u0301ДУ ЙА́\u00ADДУ ЙА́\u00ADДУ ЙА́\u00ADДУ ЙА́\u00ADДУ " +
-//                        "ЙА́\u00ADДУ ЙА́\u00ADДУ ЙА́\u00ADДУ ЙА́\u00ADДУ</p>\n" +
-//                        "</div>\n" +
-//                        "<p bgColor='#eef' firstLeftIndent=-2em leftIndent=2em rightIndent=2em>удщрфц " +
-//                        "удщрфц удщрфц удщрфц удщрфц удщрфц удщрфц</p>\n" +
-//                        "<p bgColor='#ff000'>ЙА\u0301ДУ ЙА́Д\u00ADУ ЙА́Д\u00ADУ ЙА́Д\u00ADУ ЙА́Д\u00ADУ " +
-//                        "ЙА́Д\u00ADУ ЙА́Д\u00ADУ ЙА́Д\u00ADУ ЙА́\u00ADДУ</p>\n" +
-//                        "</div>" +
-//
-//                        ""
-//        )
     }
 }
