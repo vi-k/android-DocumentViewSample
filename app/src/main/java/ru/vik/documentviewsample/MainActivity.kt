@@ -344,7 +344,7 @@ class MainActivity : AppCompatActivity() {
                 .addWordSpan(10, CharacterStyle(
                         size = Size.em(1.4f)))
         docView.document[3]
-                .addSpan(Regex("""\d+"""), -1, CharacterStyle(
+                .addSpan(Regex("""\d+"""), CharacterStyle(
                         verticalAlign = CharacterStyle.VAlign.BOTTOM,
                         size = Size.em(0.6f)))
         docView.document[4]
