@@ -5,8 +5,6 @@ import android.os.Bundle
 import ru.vik.documentview.DocumentView
 import ru.vik.utils.color.Color
 import ru.vik.utils.document.*
-import android.util.DisplayMetrics
-
 
 
 class MainActivity : AppCompatActivity() {
@@ -128,32 +126,28 @@ class MainActivity : AppCompatActivity() {
 //                .addWordSpan(6, 8, CharacterStyle(bold = true))
 //                .addWordSpan(9, -1, CharacterStyle(italic = true))
 
-        /* Пример 7 - Рамки */
-        docView.document.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed " +
-                "do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n" +
-                "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut " +
-                "aliquip ex ea commodo consequat.\n" +
-                "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore " +
-                "eu fugiat nulla pariatur.")
-        docView.document.paragraphStyle
-                .setSpaceBefore(Size.eh(1f))
-                .setSpaceAfter(Size.eh(1f))
-        docView.document[0].borderStyle
-                .setPadding(Size.dp(8f))
-                .setBorder(Border.em(1f, Color.rgb(0xDC3023)))
-                .setMargin(Size.dp(8f))
-                .setBackgroundColor(Color.argb(0.1f, 0xDC3023))
-        docView.document[1].borderStyle
-                .setPadding(Size.dp(8f))
-                .setBorder(Border.eh(1f, Color.rgb(0x22A7F0)))
-                .setMargin(Size.dp(8f))
-                .setBackgroundColor(Color.argb(0.1f, 0x22A7F0))
-        docView.document[2].borderStyle
-                .setPadding(Size.dp(8f))
-                .setBorder(Border.pt(12f, Color.rgb(0x26C281)))
-                .setMargin(Size.dp(8f))
-                .setBackgroundColor(Color.argb(0.1f, 0x26C281))
-        docView.document.characterStyle.setSize(Size.pt(12f))
+//        /* Пример 7 - Рамки */
+//        docView.document.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed " +
+//                "do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n" +
+//                "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut " +
+//                "aliquip ex ea commodo consequat.\n" +
+//                "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore " +
+//                "eu fugiat nulla pariatur.")
+//        docView.document[0].borderStyle
+//                .setPadding(Size.dp(8f))
+//                .setBorder(Border.dp(1f, Color.rgb(0xDC3023)))
+//                .setMargin(Size.dp(8f))
+//                .setBackgroundColor(Color.argb(0.1f, 0xDC3023))
+//        docView.document[1].borderStyle
+//                .setPadding(Size.dp(8f))
+//                .setBorder(Border.dp(1f, Color.rgb(0x22A7F0)))
+//                .setMargin(Size.dp(8f))
+//                .setBackgroundColor(Color.argb(0.1f, 0x22A7F0))
+//        docView.document[2].borderStyle
+//                .setPadding(Size.dp(8f))
+//                .setBorder(Border.dp(1f, Color.rgb(0x26C281)))
+//                .setMargin(Size.dp(8f))
+//                .setBackgroundColor(Color.argb(0.1f, 0x26C281))
 
 //        /* Пример 7.2 */
 //        docView.document.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed " +
@@ -252,13 +246,7 @@ class MainActivity : AppCompatActivity() {
 //                .setFirstAlign(ParagraphStyle.Align.LEFT)
 //                .setAlign(ParagraphStyle.Align.RIGHT)
 
-
 //        // Пример 9 - коррекция шрифтов
-//        docView.fontList["ponomar"] = Font(
-//                typeface = Typeface.createFromAsset(this.assets, "fonts/PonomarUnicode.ttf")!!,
-//                hyphen = '_',
-//                scale = 1.2f)
-//
 //        docView.fontList.createFamily("serif", Font(Typeface.SERIF))
 //        docView.fontList["ponomar"] = Font(
 //                typeface = Typeface.createFromAsset(this.assets, "fonts/PonomarUnicode.ttf")!!)
@@ -269,7 +257,8 @@ class MainActivity : AppCompatActivity() {
 //                typeface = Typeface.createFromAsset(this.assets, "fonts/PonomarUnicode.ttf")!!,
 //                ascentRatio = 0.8f,
 //                descentRatio = 0.8f,
-//                scale = 1.2f)
+//                scale
+//                = 1.2f)
 //
 //        docView.document.setText("В начале сотворил Бог - Въ нача́лѣ сотворѝ бг҃ъ")
 //        docView.document.addWordSpan(1, 4, CharacterStyle(font = "serif"))
@@ -302,83 +291,161 @@ class MainActivity : AppCompatActivity() {
 //
 //        docView.baselineMode = DocumentView.Baseline.PARAGRAPH
 
-//        /* Пример 11.2 */
-//        val string = "Lorem ipsum\n" +
-//                "Lo~rem ip~sum do~lor sit amet, con~sec~te~tur adi~pis~cing elit, sed do " +
-//                "eius~mod tem~por in~ci~di~dunt ut la~bo~re et do~lo~re mag~na ali~qua.\n" +
-//                "Ut enim ad mi~nim ve~niam, qu~is nos~t~rud exer~ci~ta~tion ul~lam~co la~bo~ris " +
-//                "ni~si ut ali~qu~ip ex ea com~mo~do con~se~quat.\n" +
-//                "Duis1 aute2 iru~re3 do~lor4 in5 rep~re~hen~de~rit6 in7 vo~lup~ta~te8 " +
-//                "ve~lit9 es~se10 cil~lum11 do~lo~re12 eu13 fu~gi~at14 nul~la15 " +
-//                "pa~ria~tur16.\n" +
-//                "Ex~cep~te~ur sint oc~cae~cat cu~pi~da~tat non pro~i~dent1, sunt in cul~pa* qui " +
-//                "of~fi~cia de~se~runt2 mol~lit anim id est la~bo~rum."
-//        docView.document.setText(string.replace('~', '\u00AD'))
-//
-//        docView.baselineMode = DocumentView.Baseline.VIEW
-//        docView.baselineColor = Color.rgb(0x4B77BE)
-//
-//        docView.document.characterStyle
-//                .setSize(Size.dp(18f))
-//        docView.document.paragraphStyle
-//                .setAlign(ParagraphStyle.Align.JUSTIFY)
-//                .setFirstLeftIndent(Size.dp(24f))
-//
-//        docView.document[0].characterStyle
-//                .setSize(Size.em(1.6f))
-//        docView.document[0].paragraphStyle
-//                .setAlign(ParagraphStyle.Align.CENTER)
-//                .setFirstLeftIndent(Size.dp(0f))
-//                .setSpaceAfter(Size.em(0.5f))
-//        docView.document[1].paragraphStyle
-//                .setFirstLeftIndent(Size.em(0f))
-//
-//        docView.document[2]
+        /* Пример 11.2 */
+        val string = "Lo~rem ip~sum do~lor sit amet, con~sec~te~tur adi~pis~cing elit, " +
+                "sed do eius~mod tem~por in~ci~di~dunt ut la~bo~re et do~lo~re mag~na ali~qua.\n" +
+                "Ut enim ad mi~nim ve~niam, qu~is nos~t~rud exer~ci~ta~tion ul~lam~co la~bo~ris " +
+                "ni~si ut ali~qu~ip ex ea com~mo~do con~se~quat.\n" +
+                "Duis1 aute2 iru~re3 do~lor4 in5 rep~re~hen~de~rit6 in7 vo~lup~ta~te8 " +
+                "ve~lit9 es~se10 cil~lum11 do~lo~re12 eu13 fu~gi~at14 nul~la15 " +
+                "pa~ria~tur16.\n" +
+                "Ex~cep~te~ur sint oc~cae~cat cu~pi~da~tat non pro~i~dent1, sunt in cul~pa* qui " +
+                "of~fi~cia de~se~runt mol~lit anim2 id est la~bo~rum."
+        docView.document.setText(string.replace('~', '\u00AD'))
+
+        docView.baselineMode = DocumentView.Baseline.VIEW
+        docView.baselineColor = Color.rgb(0x4B77BE)
+
+        docView.document.borderStyle
+                .setPadding(Size.dp(0f), Size.dp(8f))
+                .setBorder(Border.px(1.0f, Color.BLACK))
+                .setMargin(Size.dp(4f))
+
+        docView.document.characterStyle
+                .setSize(Size.sp(18f))
+        docView.document.paragraphStyle
+                .setAlign(ParagraphStyle.Align.JUSTIFY)
+                .setFirstLeftIndent(Size.dp(24f))
+
+//        docView.document[1]
 //                .addWordSpan(10, CharacterStyle(
 //                        size = Size.em(1.4f)))
-//        docView.document[3]
+//        docView.document[2]
 //                .addSpan(Regex("""\d+"""), CharacterStyle(
 //                        baselineShift = Size.em(0.33f),
 //                        size = Size.em(0.58f)))
-//        docView.document[4]
-//                .addSpan(Regex("""(\*+|\d+)"""), CharacterStyle(
+//        docView.document[3]
+//                .addSpan(Regex("""\*|\d"""), CharacterStyle(
 //                        baselineShift = Size.em(-0.5f),
 //                        size = Size.em(0.58f)))
 
 //        // Пример 11.3
-//        docView.document[2]
+//        docView.document[1]
 //                .addWordSpan(10, CharacterStyle(
 //                        size = Size.em(1.4f)))
-//        docView.document[3]
+//        docView.document[2]
 //                .addSpan(Regex("""\d+"""), CharacterStyle(
 //                        verticalAlign = CharacterStyle.VAlign.BOTTOM,
 //                        size = Size.em(0.58f)))
-//        docView.document[4]
-//                .addSpan(Regex("""\*"""), CharacterStyle(
+//        docView.document[3]
+//                .addSpan(Regex("""\*|\d"""), CharacterStyle(
 //                        verticalAlign = CharacterStyle.VAlign.TOP,
 //                        size = Size.em(0.58f)))
 
 //        // Пример 11.4
+//        docView.document[1]
+//                .addWordSpan(10, CharacterStyle(
+//                        size = Size.em(1.4f)))
 //        docView.document[2]
+//                .addSpan(Regex("""\d+"""), CharacterStyle(
+//                        verticalAlign = CharacterStyle.VAlign.BASELINE_TO_BOTTOM,
+//                        size = Size.em(0.58f)))
+//        docView.document[3]
+//                .addSpan(Regex("""\*|\d"""), CharacterStyle(
+//                        verticalAlign = CharacterStyle.VAlign.TOP,
+//                        size = Size.em(0.58f)))
+
+//        // Пример 11.5
+//        docView.document[1]
 //                .addWordSpan(10, CharacterStyle(
 //                        size = Size.em(1.4f),
-//                        nullSizeEffect = true))
-//        docView.document[3]
+//                        leading = Size.dp(0f)))
+//        docView.document[2]
 //                .addSpan(Regex("""\d+"""), CharacterStyle(
-//                        baselineShift = Size.em(0.25f),
-//                        size = Size.em(0.7f),
-//                        nullSizeEffect = true))
-//        docView.document[4]
-//                .addSpan(Regex("""\*"""), CharacterStyle(
-//                        baselineShift = Size.em(-0.4f),
-//                        size = Size.em(0.85f),
-//                        nullSizeEffect = true))
+//                        verticalAlign = CharacterStyle.VAlign.BASELINE_TO_BOTTOM,
+//                        size = Size.em(0.58f),
+//                        leading = Size.dp(0f)))
+//        docView.document[3]
+//                .addSpan(Regex("""\*|\d"""), CharacterStyle(
+//                        verticalAlign = CharacterStyle.VAlign.TOP,
+//                        size = Size.em(0.58f)))
 
-        docView.document.borderStyle
-                .setPadding(Size.dp(8f))
-                .setBorder(Border.px(1.0f, Color.BLACK))
-                .setMargin(Size.dp(4f))
+//        // Пример 11.5.2
+//        docView.document[1]
+//                .addWordSpan(10, CharacterStyle(
+//                        size = Size.em(1.4f),
+//                        leading = Size.ratio(1f)))
+//        docView.document[2]
+//                .addSpan(Regex("""\d+"""), CharacterStyle(
+//                        verticalAlign = CharacterStyle.VAlign.BASELINE_TO_BOTTOM,
+//                        size = Size.em(0.58f),
+//                        leading = Size.ratio(1f)))
+//        docView.document[3]
+//                .addSpan(Regex("""\*|\d"""), CharacterStyle(
+//                        verticalAlign = CharacterStyle.VAlign.TOP,
+//                        size = Size.em(0.58f)))
 
+//        // Пример 11.6
+//        docView.document.characterStyle.leading = Size.fh(1.15f)
+//
+//        docView.document[1]
+//                .addWordSpan(10, CharacterStyle(
+//                        size = Size.em(1.4f),
+//                        leading = Size.ratio(1f)))
+//        docView.document[2]
+//                .addSpan(Regex("""\d+"""), CharacterStyle(
+//                        verticalAlign = CharacterStyle.VAlign.BASELINE_TO_BOTTOM,
+//                        size = Size.em(0.58f),
+//                        leading = Size.ratio(1f)))
+//        docView.document[3]
+//                .addSpan(Regex("""\*|\d"""), CharacterStyle(
+//                        verticalAlign = CharacterStyle.VAlign.TOP,
+//                        size = Size.em(0.58f)))
+
+//        // Пример 11.7
+//        docView.document.characterStyle.leading = Size.fh(1.15f)
+////        docView.document.setFirstBaselineToTop = true
+//
+//        docView.document[0]
+//                .addSpan(0, 1, CharacterStyle(
+//                        size = Size.em(1.4f),
+//                        leading = Size.ratio(1f)))
+//        docView.document[1]
+//                .addWordSpan(10, CharacterStyle(
+//                        size = Size.em(1.4f),
+//                        leading = Size.ratio(1f)))
+//        docView.document[2]
+//                .addSpan(Regex("""\d+"""), CharacterStyle(
+//                        verticalAlign = CharacterStyle.VAlign.BASELINE_TO_BOTTOM,
+//                        size = Size.em(0.58f),
+//                        leading = Size.ratio(1f)))
+//        docView.document[3]
+//                .addSpan(Regex("""\*|\d"""), CharacterStyle(
+//                        verticalAlign = CharacterStyle.VAlign.TOP,
+//                        size = Size.em(0.58f)))
+
+//        // Пример 11.8
+//        docView.document.characterStyle.leading = Size.fh(1.15f)
+//        docView.document.setFirstBaselineToTop = true
+//
+//        docView.document[1]
+//                .addWordSpan(10, CharacterStyle(
+//                        size = Size.em(1.4f),
+//                        leading = Size.ratio(1f)))
+//        docView.document[2]
+//                .addSpan(Regex("""\d+"""), CharacterStyle(
+//                        verticalAlign = CharacterStyle.VAlign.BASELINE_TO_BOTTOM,
+//                        size = Size.em(0.58f),
+//                        leading = Size.ratio(1f)))
+//        docView.document[3]
+//                .addSpan(Regex("""\*|\d"""), CharacterStyle(
+//                        verticalAlign = CharacterStyle.VAlign.TOP,
+//                        size = Size.em(0.58f)))
+
+//        docView.document.borderStyle
+//                .setPadding(Size.dp(8f))
+//                .setBorder(Border.px(1.0f, Color.BLACK))
+//                .setMargin(Size.dp(4f))
 
 
 //        document.addTag("h1", BaseHtmlDocument.TagConfig(
