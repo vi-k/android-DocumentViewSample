@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'org.jetbrains.dokka'
 
 android {
     compileSdkVersion 27
+
     defaultConfig {
         applicationId "ru.vik.documentviewsample"
         minSdkVersion 15
@@ -38,4 +38,18 @@ dependencies {
     // My libs
     implementation project(path: ':utils')
     implementation project(path: ':documentview')
+}
+
+dokka {
+    linkMapping {
+        dir = "src/main/java"
+        url = "https://github.com/JetBrains/kotlin-examples/tree/master/gradle/dokka-gradle-example/src/main/kotlin"
+        suffix = "#L"
+    }
+}
+
+task dokkaJavadoc(type: org.jetbrains.dokka.gradle.DokkaTask) {
+    moduleName = 'app'
+    outputFormat = "html"
+    outputDirectory = "$buildDir/dokkaJavadoc"
 }
