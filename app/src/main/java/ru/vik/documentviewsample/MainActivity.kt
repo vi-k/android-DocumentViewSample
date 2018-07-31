@@ -26,34 +26,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val docView: DocumentView = findViewById(R.id.docView)
+        val documentView: DocumentView = findViewById(R.id.docView)
 
-        /* Пример 1 - Простой пример */
-        docView {
-            document {
-                text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod ..."
+//        htmlTest(documentView)
 
-                borderStyle {
-                    padding = Size.dp(8f)
-                    border = Border.px(1.0f, Color.BLACK)
-                    margin = Size.dp(4f)
-                }
-
-                span from 0 to 5 style CharacterStyle(color = Color.RED)
-                span from 6 to 11 style CharacterStyle(bold = true)
-                span from 12 to 17 style CharacterStyle(italic = true)
-                span from 18 to 21 style CharacterStyle(bold = true, italic = true)
-                span from 22 to 26 style CharacterStyle(underline = true)
-                span from 28 to 39 style CharacterStyle(strike = true)
-                span from 50 to 55 style CharacterStyle(baselineShift = Size.em(-0.4f), size = Size.em(0.85f))
-                span from 60 to 63 style CharacterStyle(baselineShift = Size.em(0.25f), size = Size.em(0.85f))
-                span from 64 to 71 style CharacterStyle(scaleX = 0.6f)
-            }
-        }
-
-
-//        /* Пример 1.2 */
-//        docView {
+//        /* Пример 1 - Простой пример */
+//        documentView {
 //            document {
 //                text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod ..."
 //
@@ -63,21 +41,45 @@ class MainActivity : AppCompatActivity() {
 //                    margin = Size.dp(4f)
 //                }
 //
-//                span on word(1) style CharacterStyle(color = Color.RED)
-//                span on word(2) style CharacterStyle(bold = true)
-//                span on word(3) style CharacterStyle(italic = true)
-//                span on word(4) style CharacterStyle(bold = true, italic = true)
-//                span on word(5) style CharacterStyle(underline = true)
-//                span on word(6) style CharacterStyle(strike = true)
-//                span on word(8) style CharacterStyle(baselineShift = Size.em(-0.4f), size = Size.em(0.85f))
-//                span on word(10) style CharacterStyle(baselineShift = Size.em(0.25f), size = Size.em(0.85f))
-//                span on word(11) style CharacterStyle(scaleX = 0.6f)
+//                span from 0 to 5 style { color = Color.RED }
+//                span from 6 to 11 style { bold = true }
+//                span from 12 to 17 style { italic = true }
+//                span from 18 to 21 style { bold = true; italic = true }
+//                span from 22 to 26 style { underline = true }
+//                span from 28 to 39 style { strike = true }
+//                span from 50 to 55 style { baselineShift = Size.em(-0.4f); size = Size.em(0.85f) }
+//                span from 60 to 63 style { baselineShift = Size.em(0.25f); size = Size.em(0.85f) }
+//                span from 64 to 71 style { scaleX = 0.6f }
+//            }
+//        }
+
+
+//        /* Пример 1.2 */
+//        documentView {
+//            document {
+//                text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod ..."
+//
+//                borderStyle {
+//                    padding = Size.dp(8f)
+//                    border = Border.px(1.0f, Color.BLACK)
+//                    margin = Size.dp(4f)
+//                }
+//
+//                span on word(1) style { color = Color.RED }
+//                span on word(2) style { bold = true }
+//                span on word(3) style { italic = true }
+//                span on word(4) style { bold = true; italic = true }
+//                span on word(5) style { underline = true }
+//                span on word(6) style { strike = true }
+//                span on word(8) style { baselineShift = Size.em(-0.4f); size = Size.em(0.85f) }
+//                span on word(10) style { baselineShift = Size.em(0.25f); size = Size.em(0.85f) }
+//                span on word(11) style { scaleX = 0.6f }
 //            }
 //        }
 
 
 //        /* Примеры 2, 2.2 */
-//        docView {
+//        documentView {
 //            document {
 //                text = "Lorem ipsum dolor sit amet ..."
 //
@@ -88,19 +90,19 @@ class MainActivity : AppCompatActivity() {
 //                }
 //
 //                /* Пример 2 */
-//                span from word(1) to word(3) style CharacterStyle(bold = true)
-//                span from word(3) to word(5) style CharacterStyle(italic = true)
+//                span from word(1) to word(3) style { bold = true }
+//                span from word(3) to word(5) style { italic = true }
 
 //                /* Пример 2.2 */
-//                span to word(3) style CharacterStyle(color = Color.RED)
-//                span from word(3) style CharacterStyle(color = Color.GREEN)
+//                span to word(3) style { color = Color.RED }
+//                span from word(3) style { color = Color.GREEN }
 
 //            }
 //        }
 
 
 //        /* Примеры 3, 3.2, 4 - Абзацы и шрифты */
-//        docView {
+//        documentView {
 //            document {
 //                text = """
 //                    |Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -190,16 +192,16 @@ class MainActivity : AppCompatActivity() {
 
 
 //        /* Пример 5 */
-//        docView {
+//        documentView {
 //            fontList {
 //                "serif1" family Font(Typeface.SERIF)
 //                "serif2" to Font(Typeface.SERIF)
-//
-////                /* Пример 5.2 */
-////                "serif2:bold" to Font(Typeface.create(Typeface.SERIF, Typeface.BOLD))
-////                "serif2:italic" to Font(Typeface.create(Typeface.SERIF, Typeface.ITALIC))
-////                "serif2:bold_italic" to Font(Typeface.create(Typeface.SERIF, Typeface.BOLD_ITALIC))
-//
+
+//                /* Пример 5.2 */
+//                "serif2:bold" to Font(Typeface.create(Typeface.SERIF, Typeface.BOLD))
+//                "serif2:italic" to Font(Typeface.create(Typeface.SERIF, Typeface.ITALIC))
+//                "serif2:bold_italic" to Font(Typeface.create(Typeface.SERIF, Typeface.BOLD_ITALIC))
+
 //            }
 //
 //            document {
@@ -216,8 +218,8 @@ class MainActivity : AppCompatActivity() {
 //                        font = "serif1"
 //                    }
 //
-//                    span to "dolor" style CharacterStyle(bold = true)
-//                    span from "dolor" style CharacterStyle(italic = true)
+//                    span to "dolor" style { bold = true }
+//                    span from "dolor" style { italic = true }
 //                }
 //
 //                paragraph(1) {
@@ -225,8 +227,8 @@ class MainActivity : AppCompatActivity() {
 //                        font = "serif2"
 //                    }
 //
-//                    span to "dolor" style CharacterStyle(bold = true)
-//                    span from "dolor" style CharacterStyle(italic = true)
+//                    span to "dolor" style { bold = true }
+//                    span from "dolor" style { italic = true }
 //                }
 //
 //            }
@@ -241,7 +243,7 @@ class MainActivity : AppCompatActivity() {
 //            "georgia:bold_italic" to Font(Typeface.createFromAsset(assets, "fonts/georgiaz.ttf")!!)
 //        }
 //
-//        docView {
+//        documentView {
 //            fontList = commonFontList
 //
 //            document {
@@ -257,14 +259,14 @@ class MainActivity : AppCompatActivity() {
 //                    margin = Size.dp(4f)
 //                }
 //
-//                span from "consectetur" to "incididunt" style CharacterStyle(bold = true)
-//                span from "sed" style CharacterStyle(italic = true)
+//                span from "consectetur" to "incididunt" style { bold = true }
+//                span from "sed" style { italic = true }
 //            }
 //        }
 
 
 //        /* Пример 7 - Рамки */
-//        docView {
+//        documentView {
 //            document {
 //                text = """
 //                    |Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -308,7 +310,7 @@ class MainActivity : AppCompatActivity() {
 
 
 //        /* Пример 7.2 */
-//        docView {
+//        documentView {
 //            document {
 //                text = """
 //                    |Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -358,7 +360,7 @@ class MainActivity : AppCompatActivity() {
 
 
 //        /* Пример 8 - Оформление абзацев */
-//        docView {
+//        documentView {
 //            document {
 //                text = """
 //                    |Lorem ipsum
@@ -428,7 +430,7 @@ class MainActivity : AppCompatActivity() {
 
 
 //        /* Пример 8.2 */
-//        docView {
+//        documentView {
 //            fontList {
 //                "georgia" to Font(Typeface.createFromAsset(assets, "fonts/georgia.ttf")!!)
 //                "georgia:bold" to Font(Typeface.createFromAsset(assets, "fonts/georgiab.ttf")!!)
@@ -464,21 +466,21 @@ class MainActivity : AppCompatActivity() {
 
 
 //        /* Примеры 9, 9.2, 9.3 - коррекция шрифтов */
-//        docView {
+//        documentView {
 //            fontList {
 //                "serif" family Font(Typeface.SERIF)
 //
 //                /* Пример 9 */
 //                "ponomar" to Font(Typeface.createFromAsset(assets, "fonts/PonomarUnicode.ttf")!!)
-
+//
 //                /* Пример 9.2 */
 //                "ponomar" to Font(Typeface.createFromAsset(assets, "fonts/PonomarUnicode.ttf")!!,
 //                        scale = 1.2f)
-
+//
 //                /* Пример 9.3 */
 //                "ponomar" to Font(Typeface.createFromAsset(assets, "fonts/PonomarUnicode.ttf")!!,
 //                        scale = 1.2f, ascentRatio = 0.8f, descentRatio = 0.8f)
-
+//
 //            }
 //
 //            document {
@@ -490,14 +492,14 @@ class MainActivity : AppCompatActivity() {
 //                    margin = Size.dp(4f)
 //                }
 //
-//                span to word (4) style CharacterStyle(font = "serif")
-//                span from word(5) style CharacterStyle(font = "ponomar")
+//                span to word (4) style { font = "serif" }
+//                span from word(5) style { font = "ponomar" }
 //            }
 //        }
 
 
 //        /* Пример 10 - по примеру 8 */
-//        docView.document {
+//        documentView.document {
 //            // Мягкие переносы для наглядности обозначаем знаком '~', затем их переводим в '\u00AD'
 //            text = """
 //                |Lorem ipsum
@@ -558,7 +560,7 @@ class MainActivity : AppCompatActivity() {
 
 
 //        /* Пример 10.2 */
-//        docView {
+//        documentView {
 //            fontList {
 //                "ponomar" to Font(
 //                        typeface = Typeface.createFromAsset(assets, "fonts/PonomarUnicode.ttf")!!,
@@ -588,13 +590,13 @@ class MainActivity : AppCompatActivity() {
 //                    align = ParagraphStyle.Align.JUSTIFY
 //                }
 //
-//                span on 0 style CharacterStyle(color = Color.RED)
+//                span on 0 style { color = Color.RED }
 //            }
 //        }
 
 
 //        /* Пример 11 - базовые линии */
-//        docView {
+//        documentView {
 //            baselineMode = DocumentView.Baseline.PARAGRAPH
 //            document {
 //                text = "Lo~rem ip~sum do~lor sit amet, con~sec~te~tur adi~pis~cing elit, sed do eius~mod tem~por in~ci~di~dunt ut la~bo~re et do~lo~re mag~na ali~qua."
@@ -610,7 +612,7 @@ class MainActivity : AppCompatActivity() {
 
 
 //        /* Примеры 11.2 - 11.8 */
-//        docView {
+//        documentView {
 //            baselineMode = DocumentView.Baseline.VIEW
 //            baselineColor = Color.rgb(0x4B77BE)
 //
@@ -623,7 +625,6 @@ class MainActivity : AppCompatActivity() {
 //                """.trimMargin().replace('~', '\u00AD')
 //
 //                borderStyle {
-//                    verticalPadding = Size.dp(0f)
 //                    horizontalPadding = Size.dp(8f)
 //                    border = Border.px(1.0f, Color.BLACK)
 //                    margin = Size.dp(4f)
@@ -637,96 +638,108 @@ class MainActivity : AppCompatActivity() {
 //                    align = ParagraphStyle.Align.JUSTIFY
 //                    firstLeftIndent = Size.dp(24f)
 //                }
-
+//
 //                // Пример 11.2
 //                paragraph(1) {
-//                    span on word(10) style CharacterStyle(size = Size.em(1.4f))
+//                    span on word(10) style { size = Size.em(1.4f) }
 //                }
 //
 //                paragraph(2) {
-//                    span all Regex("""\d+""") style CharacterStyle(
-//                            baselineShift = Size.em(0.33f),
-//                            size = Size.em(0.58f))
+//                    span all Regex("""\d+""") style {
+//                        baselineShift = Size.em(0.33f)
+//                        size = Size.em(0.58f)
+//                    }
 //                }
 //
 //                paragraph(3) {
-//                    span all Regex("""\*|\d""") style CharacterStyle(
-//                            baselineShift = Size.em(-0.5f),
-//                            size = Size.em(0.58f))
+//                    span all Regex("""\*|\d""") style {
+//                        baselineShift = Size.em(-0.5f)
+//                        size = Size.em(0.58f)
+//                    }
 //                }
 
 //                // Пример 11.3
 //                paragraph(1) {
-//                    span on word(10) style CharacterStyle(size = Size.em(1.4f))
+//                    span on word(10) style { size = Size.em(1.4f) }
 //                }
 //
 //                paragraph(2) {
-//                    span all Regex("""\d+""") style CharacterStyle(
-//                            verticalAlign = CharacterStyle.VAlign.BOTTOM,
-//                            size = Size.em(0.58f))
+//                    span all Regex("""\d+""") style {
+//                        verticalAlign = CharacterStyle.VAlign.BOTTOM
+//                        size = Size.em(0.58f)
+//                    }
 //                }
 //
 //                paragraph(3) {
-//                    span all Regex("""\*|\d""") style CharacterStyle(
-//                            verticalAlign = CharacterStyle.VAlign.TOP,
-//                            size = Size.em(0.58f))
+//                    span all Regex("""\*|\d""") style {
+//                        verticalAlign = CharacterStyle.VAlign.TOP
+//                        size = Size.em(0.58f)
+//                    }
 //                }
 
 //                // Пример 11.4
 //                paragraph(1) {
-//                    span on word(10) style CharacterStyle(size = Size.em(1.4f))
+//                    span on word(10) style { size = Size.em(1.4f) }
 //                }
 //
 //                paragraph(2) {
-//                    span all Regex("""\d+""") style CharacterStyle(
-//                            verticalAlign = CharacterStyle.VAlign.BASELINE_TO_BOTTOM,
-//                            size = Size.em(0.58f))
+//                    span all Regex("""\d+""") style {
+//                        verticalAlign = CharacterStyle.VAlign.BASELINE_TO_BOTTOM
+//                        size = Size.em(0.58f)
+//                    }
 //                }
 //
 //                paragraph(3) {
-//                    span all Regex("""\*|\d""") style CharacterStyle(
-//                            verticalAlign = CharacterStyle.VAlign.TOP,
-//                            size = Size.em(0.58f))
+//                    span all Regex("""\*|\d""") style {
+//                        verticalAlign = CharacterStyle.VAlign.TOP
+//                        size = Size.em(0.58f)
+//                    }
 //                }
 
 //                // Пример 11.5
 //                paragraph(1) {
-//                    span on word(10) style CharacterStyle(
-//                            size = Size.em(1.4f),
-//                            leading = Size.dp(0f))
+//                    span on word(10) style {
+//                        size = Size.em(1.4f)
+//                        leading = Size.dp(0f)
+//                    }
 //                }
 //
 //                paragraph(2) {
-//                    span all Regex("""\d+""") style CharacterStyle(
-//                            verticalAlign = CharacterStyle.VAlign.BASELINE_TO_BOTTOM,
-//                            size = Size.em(0.58f),
-//                            leading = Size.dp(0f))
+//                    span all Regex("""\d+""") style {
+//                        verticalAlign = CharacterStyle.VAlign.BASELINE_TO_BOTTOM
+//                        size = Size.em(0.58f)
+//                        leading = Size.dp(0f)
+//                    }
 //                }
 //
 //                paragraph(3) {
-//                    span all Regex("""\*|\d""") style CharacterStyle(
-//                            verticalAlign = CharacterStyle.VAlign.TOP,
-//                            size = Size.em(0.58f))
+//                    span all Regex("""\*|\d""") style {
+//                        verticalAlign = CharacterStyle.VAlign.TOP
+//                        size = Size.em(0.58f)
+//                    }
 //                }
 
 //                // Пример 11.5.2
 //                paragraph(1) {
-//                    span on word(10) style CharacterStyle(
-//                            size = Size.em(1.4f),
-//                            leading = Size.ratio(1f))
+//                    span on word(10) style {
+//                        size = Size.em(1.4f)
+//                        leading = Size.ratio(1f)
+//                    }
 //                }
 //
 //                paragraph(2) {
-//                    span all Regex("""\d+""") style CharacterStyle(
-//                            verticalAlign = CharacterStyle.VAlign.BASELINE_TO_BOTTOM,
-//                            size = Size.em(0.58f),
-//                            leading = Size.ratio(1f))
+//                    span all Regex("""\d+""") style {
+//                        verticalAlign = CharacterStyle.VAlign.BASELINE_TO_BOTTOM
+//                        size = Size.em(0.58f)
+//                        leading = Size.ratio(1f)
+//                    }
 //                }
 //
 //                paragraph(3) {
-//                    span all Regex("""\*|\d""") style CharacterStyle(
-//                            verticalAlign = CharacterStyle.VAlign.TOP,
-//                            size = Size.em(0.58f))
+//                    span all Regex("""\*|\d""") style {
+//                        verticalAlign = CharacterStyle.VAlign.TOP
+//                        size = Size.em(0.58f)
+//                    }
 //                }
 
 //                // Пример 11.6
@@ -735,22 +748,25 @@ class MainActivity : AppCompatActivity() {
 //                }
 //
 //                paragraph(1) {
-//                    span on word(10) style CharacterStyle(
-//                            size = Size.em(1.4f),
-//                            leading = Size.ratio(1f))
+//                    span on word(10) style {
+//                        size = Size.em(1.4f)
+//                        leading = Size.ratio(1f)
+//                    }
 //                }
 //
 //                paragraph(2) {
-//                    span all Regex("""\d+""") style CharacterStyle(
-//                            verticalAlign = CharacterStyle.VAlign.BASELINE_TO_BOTTOM,
-//                            size = Size.em(0.58f),
-//                            leading = Size.ratio(1f))
+//                    span all Regex("""\d+""") style {
+//                        verticalAlign = CharacterStyle.VAlign.BASELINE_TO_BOTTOM
+//                        size = Size.em(0.58f)
+//                        leading = Size.ratio(1f)
+//                    }
 //                }
 //
 //                paragraph(3) {
-//                    span all Regex("""\*|\d""") style CharacterStyle(
-//                            verticalAlign = CharacterStyle.VAlign.TOP,
-//                            size = Size.em(0.58f))
+//                    span all Regex("""\*|\d""") style {
+//                        verticalAlign = CharacterStyle.VAlign.TOP
+//                        size = Size.em(0.58f)
+//                    }
 //                }
 
 //                // Пример 11.7
@@ -759,28 +775,32 @@ class MainActivity : AppCompatActivity() {
 //                }
 //
 //                paragraph(0) {
-//                    span on 0 style CharacterStyle(
-//                            size = Size.em(1.4f),
-//                            leading = Size.ratio(1f))
+//                    span on 0 style {
+//                        size = Size.em(1.4f)
+//                        leading = Size.ratio(1f)
+//                    }
 //                }
 //
 //                paragraph(1) {
-//                    span on word(10) style CharacterStyle(
-//                            size = Size.em(1.4f),
-//                            leading = Size.ratio(1f))
+//                    span on word(10) style {
+//                        size = Size.em(1.4f)
+//                        leading = Size.ratio(1f)
+//                    }
 //                }
 //
 //                paragraph(2) {
-//                    span all Regex("""\d+""") style CharacterStyle(
-//                            verticalAlign = CharacterStyle.VAlign.BASELINE_TO_BOTTOM,
-//                            size = Size.em(0.58f),
-//                            leading = Size.ratio(1f))
+//                    span all Regex("""\d+""") style {
+//                        verticalAlign = CharacterStyle.VAlign.BASELINE_TO_BOTTOM
+//                        size = Size.em(0.58f)
+//                        leading = Size.ratio(1f)
+//                    }
 //                }
 //
 //                paragraph(3) {
-//                    span all Regex("""\*|\d""") style CharacterStyle(
-//                            verticalAlign = CharacterStyle.VAlign.TOP,
-//                            size = Size.em(0.58f))
+//                    span all Regex("""\*|\d""") style {
+//                        verticalAlign = CharacterStyle.VAlign.TOP
+//                        size = Size.em(0.58f)
+//                    }
 //                }
 
 //                // Пример 11.8
@@ -791,198 +811,35 @@ class MainActivity : AppCompatActivity() {
 //                firstBaselineToTop = true
 //
 ////                paragraph(0) {
-////                    span on 0 style CharacterStyle(
+////                    span on 0 style {
 ////                            size = Size.em(1.4f),
 ////                            leading = Size.ratio(1f))
 ////                }
 //
 //                paragraph(1) {
-//                    span on word(10) style CharacterStyle(
-//                            size = Size.em(1.4f),
-//                            leading = Size.ratio(1f))
+//                    span on word(10) style {
+//                        size = Size.em(1.4f)
+//                        leading = Size.ratio(1f)
+//                    }
 //                }
 //
 //                paragraph(2) {
-//                    span all Regex("""\d+""") style CharacterStyle(
-//                            verticalAlign = CharacterStyle.VAlign.BASELINE_TO_BOTTOM,
-//                            size = Size.em(0.58f),
-//                            leading = Size.ratio(1f))
+//                    span all Regex("""\d+""") style {
+//                        verticalAlign = CharacterStyle.VAlign.BASELINE_TO_BOTTOM
+//                        size = Size.em(0.58f),
+//                        leading = Size.ratio(1f)
+//                    }
 //                }
 //
 //                paragraph(3) {
-//                    span all Regex("""\*|\d""") style CharacterStyle(
-//                            verticalAlign = CharacterStyle.VAlign.TOP,
-//                            size = Size.em(0.58f))
+//                    span all Regex("""\*|\d""") style {
+//                        verticalAlign = CharacterStyle.VAlign.TOP
+//                        size = Size.em(0.58f)
+//                    }
 //                }
-
+//
 //            }
 //        }
 
-
-//        _document.addTag("h1", BaseHtmlDocument.TagConfig(
-//                type = Tag.Type.PARAGRAPH,
-//                onSetCharacterStyle = { tag, characterStyle ->
-//                    characterStyle.size = Size.em(1.6f)
-//                    characterStyle.bold = true
-//                },
-//                onSetBorderStyle = { tag, borderStyle ->
-//                    borderStyle.marginBottom = Size.dp(8f)
-//                    borderStyle.borderBottom = Border.dp(1f, Color.rgb(224, 224, 224))
-//                }
-//        ))
-//
-//        _document.addTag("h2", BaseHtmlDocument.TagConfig(
-//                type = Tag.Type.PARAGRAPH,
-//                onSetCharacterStyle = { tag, characterStyle ->
-//                    characterStyle.size = Size.em(1.4f)
-//                    characterStyle.bold = true
-//                },
-//                onSetBorderStyle = { tag, borderStyle ->
-//                    borderStyle.marginBottom = Size.dp(8f)
-//                    borderStyle.borderBottom = Border.dp(1f, Color.rgb(224, 224, 224))
-//                }
-//        ))
-//
-//        _document.addTag("p", BaseHtmlDocument.TagConfig(
-//                type = Tag.Type.PARAGRAPH,
-//                onSetCharacterStyle = { tag, characterStyle ->
-//                    tag.attributes["font"]?.let {
-//                        characterStyle.font = it
-//                    }
-//                    tag.attributes["lang"]?.let {
-//                        if (it == "csl") {
-//                            characterStyle.font = it
-//                            characterStyle.scaleX = 0.85f
-//                        }
-//                    }
-//                },
-//                onSetBorderStyle = { tag, borderStyle ->
-//                    borderStyle.marginBottom = Size.dp(8f)
-//                }
-//        ))
-//
-//        _document.addTag("csl", BaseHtmlDocument.TagConfig(
-//                type = Tag.Type.PARAGRAPH,
-//                onSetCharacterStyle = { tag, characterStyle ->
-//                    characterStyle.font = "ponomar"
-//                    characterStyle.scaleX = 0.85f
-//                },
-//                onSetParagraphStyle = { tag, paragraphStyle ->
-//                    paragraphStyle.align = ParagraphStyle.Align.JUSTIFY
-//                    paragraphStyle.firstLeftIndent = Size.em(2f)
-//                },
-//                onSetBorderStyle = { tag, borderStyle ->
-//                    borderStyle.marginBottom = Size.dp(8f)
-//                    borderStyle.setBorder(Border.dp(1f, Color.rgb(0x5B8930)))
-//                    borderStyle.setPadding(topAndBottom = null, leftAndRight = Size.dp(4f))
-//                    borderStyle.backgroundColor = Color.argb(64, 0x5B8930)
-//                }
-//        ))
-//
-//        _document.addTag("blockquote", BaseHtmlDocument.TagConfig(
-//                type = Tag.Type.PARAGRAPH,
-//                onSetBorderStyle = { tag, borderStyle ->
-//                    borderStyle.marginBottom = Size.dp(8f)
-//                    borderStyle.marginLeft = Size.dp(16f)
-//                    borderStyle.borderLeft = Border.dp(4f, Color.rgb(0xE08A1E))
-//                    borderStyle.paddingLeft = Size.dp(16f)
-//                    borderStyle.backgroundColor = Color.argb(64, 0xE08A1E)
-//                },
-//                onSetCharacterStyle = { tag, characterStyle ->
-//                    characterStyle.backgroundColor = Color.rgb(64, 64, 64)
-//                    characterStyle.italic = true
-//                }
-//        ))
-//
-//        _document.addTag("b", BaseHtmlDocument.TagConfig(
-//                type = Tag.Type.CHARACTER,
-//                onSetCharacterStyle = { tag, characterStyle ->
-//                    characterStyle.bold = true
-//                }
-//        ))
-//
-//        _document.addTag("i", BaseHtmlDocument.TagConfig(
-//                type = Tag.Type.CHARACTER,
-//                onSetCharacterStyle = { tag, characterStyle ->
-//                    characterStyle.italic = true
-//                }
-//        ))
-//
-//        _document.addTag("u", BaseHtmlDocument.TagConfig(
-//                type = Tag.Type.CHARACTER,
-//                onSetCharacterStyle = { tag, characterStyle ->
-//                    characterStyle.underline = true
-//                }
-//        ))
-//
-//        _document.addTag("s", BaseHtmlDocument.TagConfig(
-//                type = Tag.Type.CHARACTER,
-//                onSetCharacterStyle = { tag, characterStyle ->
-//                    characterStyle.strike = true
-//                }
-//        ))
-//
-//        _document.addTag("sup", BaseHtmlDocument.TagConfig(
-//                type = Tag.Type.CHARACTER,
-//                onSetCharacterStyle = { tag, characterStyle ->
-//                    characterStyle.size = Size.em(0.85f)
-//                    characterStyle.baselineShift = Size.em(0.25f)
-//                }
-//        ))
-//
-//        _document.addTag("sub", BaseHtmlDocument.TagConfig(
-//                type = Tag.Type.CHARACTER,
-//                onSetCharacterStyle = { tag, characterStyle ->
-//                    characterStyle.size = Size.em(0.85f)
-//                    characterStyle.baselineShift = Size.em(-0.4f)
-//                }
-//        ))
-//
-//        _document.addTag("red", BaseHtmlDocument.TagConfig(
-//                type = Tag.Type.CHARACTER,
-//                onSetCharacterStyle = { tag, characterStyle ->
-//                    characterStyle.backgroundColor = Color.rgb(0xF22613)
-//                }
-//        ))
-//
-//        val test = "Normal, <b>bold</b>, <i>italic</i>, <u>underline</u>, " +
-//                "<s>strike</s>, <red>custom</red>."
-//
-//        _document.setText("<h1>Header 1</h1>\n" +
-//                "<h2>Header 2</h2>\n" +
-//                "<p>Sans_serif: $test</p>\n" +
-//                "<p font='sans_serif2'>Sans_serif2: $test</p>\n" +
-//                "<p font='serif'>Serif: $test</p>\n" +
-//                "<p font='serif2'>Serif2: $test</p>\n" +
-//                "<p font='mono'>Mono: $test</p>\n" +
-//                "<p font='mono2'>Mono2: $test</p>\n" +
-//                "<csl><red>П</red>рї\u00ADи\u00ADди́\u00ADте ко мнѣ̀ всѝ " +
-//                "трꙋж\u00ADда́ю\u00ADщї\u00ADи\u00ADсѧ и҆ ѡ҆б\u00ADре\u00ADме\u00ADне́н\u00ADнїи, " +
-//                "и҆ а҆́зъ оу҆по\u00ADко́ю вы̀. <red>В</red>оз\u00AD̾ми́\u00ADте и҆́го моѐ на се\u00ADбѐ, и҆ " +
-//                "на\u00ADꙋ\u00ADчи́\u00ADте\u00ADсѧ ѿ ме\u00ADнѐ, ꙗ҆́кѡ кро́\u00ADтокъ є҆́смь и҆  " +
-//                "сми\u00ADре́нъ се́рд\u00ADцемъ, и҆ ѡ҆б\u00ADрѧ́\u00ADще\u00ADте по\u00ADко́й " +
-//                "дꙋ\u00ADша́мъ ва́\u00ADшымъ. <red>И҆́</red>го бо моѐ бла́\u00ADго, и҆ бре́\u00ADмѧ моѐ " +
-//                "лег\u00ADко̀ є҆́сть.</csl>\n" +
-//                "<p>Text<sup>sup</sup>, textBuilder<sub>sub</sub></p>\n" +
-//                "<p>Text<sup>sup<sup>sup</sup></sup>, textBuilder<sub>sub<sub>sub</sub></sub></p>\n" +
-//                "<p>Text<sup>sup<sub>sub<sup>sup<sub>sub</sub></sup></sub></sup>, " +
-//                "textBuilder<sub>sub<sup>sup<sub>sub<sup>sup</sup></sub></sup></sub>.</p>\n" +
-//                "<blockquote>«Наши люди в булочную на такси не ездят!»</blockquote>")
-
-//        _document.getTagConfig("blockquote")?.let {
-//            it.onSetBorderStyle = { tag, borderStyle ->
-//                borderStyle.setMargin(Size.dp(8f), null, Size.dp(8f), Size.em(1f))
-//                borderStyle.borderLeft = Border.dp(4f, Color.rgb(192, 192, 192))
-//                borderStyle.paddingLeft = Size.em(1f)
-//                borderStyle.backgroundColor = Color.rgb(224, 224, 224)
-////                it.onSetBorderStyle?.invoke(tag, borderStyle)
-//            }
-//
-//            it.onSetCharacterStyle = { tag, characterStyle ->
-//                characterStyle.backgroundColor = Color.rgb(128, 128, 128)
-//                characterStyle.italic = true
-//                _document.setCharacterStyleFromAttributes(tag, characterStyle)
-//            }
-//        }
     }
 }
