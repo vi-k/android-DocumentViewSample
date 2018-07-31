@@ -26,32 +26,30 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-//        val metrics = applicationContext.resources.displayMetrics
-
         val docView: DocumentView = findViewById(R.id.docView)
 
-//        /* Пример 1 - Простой пример */
-//        docView {
-//            document {
-//                text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod ..."
-//
-//                borderStyle {
-//                    padding = Size.dp(8f)
-//                    border = Border.px(1.0f, Color.BLACK)
-//                    margin = Size.dp(4f)
-//                }
-//
-//                span from 0 to 5 style CharacterStyle(color = Color.RED)
-//                span from 6 to 11 style CharacterStyle(bold = true)
-//                span from 12 to 17 style CharacterStyle(italic = true)
-//                span from 18 to 21 style CharacterStyle(bold = true, italic = true)
-//                span from 22 to 26 style CharacterStyle(underline = true)
-//                span from 28 to 39 style CharacterStyle(strike = true)
-//                span from 50 to 55 style CharacterStyle(baselineShift = Size.em(-0.4f), size = Size.em(0.85f))
-//                span from 60 to 63 style CharacterStyle(baselineShift = Size.em(0.25f), size = Size.em(0.85f))
-//                span from 64 to 71 style CharacterStyle(scaleX = 0.6f)
-//            }
-//        }
+        /* Пример 1 - Простой пример */
+        docView {
+            document {
+                text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod ..."
+
+                borderStyle {
+                    padding = Size.dp(8f)
+                    border = Border.px(1.0f, Color.BLACK)
+                    margin = Size.dp(4f)
+                }
+
+                span from 0 to 5 style CharacterStyle(color = Color.RED)
+                span from 6 to 11 style CharacterStyle(bold = true)
+                span from 12 to 17 style CharacterStyle(italic = true)
+                span from 18 to 21 style CharacterStyle(bold = true, italic = true)
+                span from 22 to 26 style CharacterStyle(underline = true)
+                span from 28 to 39 style CharacterStyle(strike = true)
+                span from 50 to 55 style CharacterStyle(baselineShift = Size.em(-0.4f), size = Size.em(0.85f))
+                span from 60 to 63 style CharacterStyle(baselineShift = Size.em(0.25f), size = Size.em(0.85f))
+                span from 64 to 71 style CharacterStyle(scaleX = 0.6f)
+            }
+        }
 
 
 //        /* Пример 1.2 */
@@ -108,7 +106,7 @@ class MainActivity : AppCompatActivity() {
 //                    |Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 //                    |Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 //                    |Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-//                    """.trimMargin()
+//                """.trimMargin()
 //
 //                borderStyle {
 //                    padding = Size.dp(8f)
@@ -272,7 +270,7 @@ class MainActivity : AppCompatActivity() {
 //                    |Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 //                    |Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 //                    |Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-//                    """.trimMargin()
+//                """.trimMargin()
 //
 //                borderStyle {
 //                    border = Border.px(1.0f, Color.BLACK)
@@ -316,7 +314,7 @@ class MainActivity : AppCompatActivity() {
 //                    |Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 //                    |Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 //                    |Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-//                    """.trimMargin()
+//                """.trimMargin()
 //
 //                borderStyle {
 //                    padding = Size.dp(4f)
@@ -507,7 +505,7 @@ class MainActivity : AppCompatActivity() {
 //                |Ut enim ad mi~nim ve~niam, qu~is nos~t~rud exer~ci~ta~tion ul~lam~co la~bo~ris ni~si ut ali~qu~ip ex ea com~mo~do con~se~quat.
 //                |Duis aute iru~re do~lor in rep~re~hen~de~rit in vo~lup~ta~te ve~lit es~se cil~lum do~lo~re eu fu~gi~at nul~la pa~ria~tur.
 //                |Ex~cep~te~ur sint oc~cae~cat cu~pi~da~tat non pro~i~dent, sunt in cul~pa qui of~fi~cia de~se~runt mol~lit anim id est la~bo~rum.
-//                """.trimMargin().replace('~', '\u00AD')
+//            """.trimMargin().replace('~', '\u00AD')
 //
 //            borderStyle {
 //                padding = Size.dp(8f)
@@ -622,7 +620,7 @@ class MainActivity : AppCompatActivity() {
 //                    |Ut enim ad mi~nim ve~niam, qu~is nos~t~rud exer~ci~ta~tion ul~lam~co la~bo~ris ni~si ut ali~qu~ip ex ea com~mo~do con~se~quat.
 //                    |Duis1 aute2 iru~re3 do~lor4 in5 rep~re~hen~de~rit6 in7 vo~lup~ta~te8 ve~lit9 es~se10 cil~lum11 do~lo~re12 eu13 fu~gi~at14 nul~la15 pa~ria~tur16.
 //                    |Ex~cep~te~ur sint oc~cae~cat cu~pi~da~tat non pro~i~dent1, sunt in cul~pa* qui of~fi~cia de~se~runt mol~lit anim2 id est la~bo~rum.
-//                    """.trimMargin().replace('~', '\u00AD')
+//                """.trimMargin().replace('~', '\u00AD')
 //
 //                borderStyle {
 //                    verticalPadding = Size.dp(0f)
