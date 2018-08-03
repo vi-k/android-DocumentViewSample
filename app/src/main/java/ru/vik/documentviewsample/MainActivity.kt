@@ -11,6 +11,7 @@ import ru.vik.documentview.DocumentView
 import ru.vik.documentview.Font
 import ru.vik.documentview.FontList
 import ru.vik.utils.color.Color
+import ru.vik.utils.color.mix
 import ru.vik.utils.document.*
 
 /**
@@ -28,7 +29,7 @@ class MainActivity : AppCompatActivity() {
 
         val documentView: DocumentView = findViewById(R.id.docView)
 
-//        htmlTest(documentView)
+        htmlTest(documentView)
 
 //        /* Пример 1 - Простой пример */
 //        documentView {
@@ -54,14 +55,14 @@ class MainActivity : AppCompatActivity() {
 //        }
 
 
-//        /* Пример 1.2 */
+//        /* Пример 1.2 (скриншот тот же) */
 //        documentView {
 //            document {
 //                text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod ..."
 //
 //                borderStyle {
 //                    padding = Size.dp(8f)
-//                    border = Border.px(1.0f, Color.BLACK)
+//                    border = Border.px(1f, Color.BLACK)
 //                    margin = Size.dp(4f)
 //                }
 //
@@ -78,14 +79,14 @@ class MainActivity : AppCompatActivity() {
 //        }
 
 
-//        /* Примеры 2, 2.2 */
+//        /* Примеры 2.1-2.2 */
 //        documentView {
 //            document {
 //                text = "Lorem ipsum dolor sit amet ..."
 //
 //                borderStyle {
 //                    padding = Size.dp(8f)
-//                    border = Border.px(1.0f, Color.BLACK)
+//                    border = Border.px(1f, Color.BLACK)
 //                    margin = Size.dp(4f)
 //                }
 //
@@ -101,7 +102,7 @@ class MainActivity : AppCompatActivity() {
 //        }
 
 
-//        /* Примеры 3, 3.2, 4 - Абзацы и шрифты */
+//        /* Примеры 3.1-3.3 - Абзацы и шрифты */
 //        documentView {
 //            document {
 //                text = """
@@ -111,14 +112,14 @@ class MainActivity : AppCompatActivity() {
 //                """.trimMargin()
 //
 //                borderStyle {
-//                    padding = Size.dp(8f)
-//                    border = Border.px(1.0f, Color.BLACK)
+//                    padding  = Size.dp(8f)
+//                    border = Border.px(1f, Color.BLACK)
 //                    margin = Size.dp(4f)
 //                }
 //
 //                val red = CharacterStyle(color = Color.RED)
 //
-//                /* Пример 3 */
+//                /* Пример 3.1 */
 //                paragraph(0) {
 //                    span on 0 style red
 //                }
@@ -156,7 +157,7 @@ class MainActivity : AppCompatActivity() {
 //                    span on 0 style red
 //                }
 
-//                /* Пример 4 - Шрифты */
+//                /* Пример 3.3 - Шрифты */
 //                fontList {
 //                    "sans_serif" family Font(Typeface.SANS_SERIF)
 //                    "serif" family Font(Typeface.SERIF)
@@ -191,13 +192,13 @@ class MainActivity : AppCompatActivity() {
 //        }
 
 
-//        /* Пример 5 */
+//        /* Пример 4.1 */
 //        documentView {
 //            fontList {
 //                "serif1" family Font(Typeface.SERIF)
 //                "serif2" to Font(Typeface.SERIF)
 
-//                /* Пример 5.2 */
+//                /* Пример 4.2 */
 //                "serif2:bold" to Font(Typeface.create(Typeface.SERIF, Typeface.BOLD))
 //                "serif2:italic" to Font(Typeface.create(Typeface.SERIF, Typeface.ITALIC))
 //                "serif2:bold_italic" to Font(Typeface.create(Typeface.SERIF, Typeface.BOLD_ITALIC))
@@ -209,7 +210,7 @@ class MainActivity : AppCompatActivity() {
 //
 //                borderStyle {
 //                    padding = Size.dp(8f)
-//                    border = Border.px(1.0f, Color.BLACK)
+//                    border = Border.px(1f, Color.BLACK)
 //                    margin = Size.dp(4f)
 //                }
 //
@@ -235,7 +236,7 @@ class MainActivity : AppCompatActivity() {
 //        }
 
 
-//        /* Пример 6 */
+//        /* Пример 5 */
 //        val commonFontList = FontList {
 //            "georgia" to Font(Typeface.createFromAsset(assets, "fonts/georgia.ttf")!!)
 //            "georgia:bold" to Font(Typeface.createFromAsset(assets, "fonts/georgiab.ttf")!!)
@@ -255,7 +256,7 @@ class MainActivity : AppCompatActivity() {
 //
 //                borderStyle {
 //                    padding = Size.dp(8f)
-//                    border = Border.px(1.0f, Color.BLACK)
+//                    border = Border.px(1f, Color.BLACK)
 //                    margin = Size.dp(4f)
 //                }
 //
@@ -265,7 +266,7 @@ class MainActivity : AppCompatActivity() {
 //        }
 
 
-//        /* Пример 7 - Рамки */
+//        /* Пример 6.1 - Рамки */
 //        documentView {
 //            document {
 //                text = """
@@ -275,7 +276,7 @@ class MainActivity : AppCompatActivity() {
 //                """.trimMargin()
 //
 //                borderStyle {
-//                    border = Border.px(1.0f, Color.BLACK)
+//                    border = Border.px(1f, Color.BLACK)
 //                    margin = Size.dp(4f)
 //                }
 //
@@ -309,7 +310,7 @@ class MainActivity : AppCompatActivity() {
 //        }
 
 
-//        /* Пример 7.2 */
+//        /* Пример 6.2 */
 //        documentView {
 //            document {
 //                text = """
@@ -319,8 +320,7 @@ class MainActivity : AppCompatActivity() {
 //                """.trimMargin()
 //
 //                borderStyle {
-//                    padding = Size.dp(4f)
-//                    border = Border.dp(4.0f, Color.rgb(0xF9690E))
+//                    border = Border.dp(4f, Color.rgb(0xF9690E))
 //                    margin = Size.dp(4f)
 //                    backgroundColor = Color.argb(0.1f, 0xF9690E)
 //                }
@@ -328,11 +328,12 @@ class MainActivity : AppCompatActivity() {
 //                paragraph(0) {
 //                    borderStyle {
 //                        padding = Size.dp(8f)
+//                        margin = Size.dp(8f)
+//
 //                        borderTop = Border.dp(8f, Color.rgb(0xDC3023))
 //                        borderRight = Border.dp(8f, Color.rgb(0x22A7F0))
 //                        borderBottom = Border.dp(8f, Color.rgb(0x26C281))
 //                        borderLeft = Border.dp(8f, Color.rgb(0x9B59B6))
-//                        margin = Size.dp(4f)
 //                        backgroundColor = Color.argb(0.2f, 0xDC3023)
 //                    }
 //                }
@@ -340,8 +341,9 @@ class MainActivity : AppCompatActivity() {
 //                paragraph(1) {
 //                    borderStyle {
 //                        padding = Size.dp(8f)
+//                        margin = Size.dp(8f)
+//
 //                        borderLeft = Border.dp(8f, Color.rgb(0x22A7F0))
-//                        margin = Size.dp(4f)
 //                        backgroundColor = Color.argb(0.2f, 0x22A7F0)
 //                    }
 //                }
@@ -349,9 +351,10 @@ class MainActivity : AppCompatActivity() {
 //                paragraph(2) {
 //                    borderStyle {
 //                        padding = Size.dp(8f)
+//                        margin = Size.dp(8f)
+//
 //                        verticalBorder = Border.dp(8f, Color.TRANSPARENT)
 //                        horizontalBorder = Border.dp(8f, Color.rgb(0x26C281))
-//                        margin = Size.dp(4f)
 //                        backgroundColor = Color.argb(0.2f, 0x26C281)
 //                    }
 //                }
@@ -359,7 +362,7 @@ class MainActivity : AppCompatActivity() {
 //        }
 
 
-//        /* Пример 8 - Оформление абзацев */
+//        /* Пример 7 - Оформление абзацев */
 //        documentView {
 //            document {
 //                text = """
@@ -372,7 +375,7 @@ class MainActivity : AppCompatActivity() {
 //
 //                borderStyle {
 //                    padding = Size.dp(8f)
-//                    border = Border.px(1.0f, Color.BLACK)
+//                    border = Border.px(1f, Color.BLACK)
 //                    margin = Size.dp(4f)
 //                }
 //
@@ -429,7 +432,7 @@ class MainActivity : AppCompatActivity() {
 //        }
 
 
-//        /* Пример 8.2 */
+//        /* Пример 8 */
 //        documentView {
 //            fontList {
 //                "georgia" to Font(Typeface.createFromAsset(assets, "fonts/georgia.ttf")!!)
@@ -446,7 +449,7 @@ class MainActivity : AppCompatActivity() {
 //
 //                borderStyle {
 //                    padding = Size.dp(8f)
-//                    border = Border.px(1.0f, Color.BLACK)
+//                    border = Border.px(1f, Color.BLACK)
 //                    margin = Size.dp(4f)
 //                }
 //
@@ -465,7 +468,7 @@ class MainActivity : AppCompatActivity() {
 //        }
 
 
-//        /* Примеры 9, 9.2, 9.3 - коррекция шрифтов */
+//        /* Примеры 9.1-9.3 - коррекция шрифтов */
 //        documentView {
 //            fontList {
 //                "serif" family Font(Typeface.SERIF)
@@ -488,7 +491,7 @@ class MainActivity : AppCompatActivity() {
 //
 //                borderStyle {
 //                    padding = Size.dp(8f)
-//                    border = Border.px(1.0f, Color.BLACK)
+//                    border = Border.px(1f, Color.BLACK)
 //                    margin = Size.dp(4f)
 //                }
 //
@@ -511,7 +514,7 @@ class MainActivity : AppCompatActivity() {
 //
 //            borderStyle {
 //                padding = Size.dp(8f)
-//                border = Border.px(1.0f, Color.BLACK)
+//                border = Border.px(1f, Color.BLACK)
 //                margin = Size.dp(4f)
 //            }
 //
@@ -559,7 +562,7 @@ class MainActivity : AppCompatActivity() {
 //        }
 
 
-//        /* Пример 10.2 */
+//        /* Пример 11 */
 //        documentView {
 //            fontList {
 //                "ponomar" to Font(
@@ -577,7 +580,7 @@ class MainActivity : AppCompatActivity() {
 //
 //                borderStyle {
 //                    padding = Size.dp(8f)
-//                    border = Border.px(1.0f, Color.BLACK)
+//                    border = Border.px(1f, Color.BLACK)
 //                    margin = Size.dp(4f)
 //                }
 //
@@ -595,7 +598,7 @@ class MainActivity : AppCompatActivity() {
 //        }
 
 
-//        /* Пример 11 - базовые линии */
+//        /* Пример 12 - базовые линии */
 //        documentView {
 //            baselineMode = DocumentView.Baseline.PARAGRAPH
 //            document {
@@ -604,14 +607,14 @@ class MainActivity : AppCompatActivity() {
 //
 //                borderStyle {
 //                    padding = Size.dp(8f)
-//                    border = Border.px(1.0f, Color.BLACK)
+//                    border = Border.px(1f, Color.BLACK)
 //                    margin = Size.dp(4f)
 //                }
 //            }
 //        }
 
 
-//        /* Примеры 11.2 - 11.8 */
+//        /* Примеры 13.1-13.7 */
 //        documentView {
 //            baselineMode = DocumentView.Baseline.VIEW
 //            baselineColor = Color.rgb(0x4B77BE)
@@ -626,7 +629,7 @@ class MainActivity : AppCompatActivity() {
 //
 //                borderStyle {
 //                    horizontalPadding = Size.dp(8f)
-//                    border = Border.px(1.0f, Color.BLACK)
+//                    border = Border.px(1f, Color.BLACK)
 //                    margin = Size.dp(4f)
 //                }
 //
@@ -838,6 +841,190 @@ class MainActivity : AppCompatActivity() {
 //                    }
 //                }
 //
+//            }
+//        }
+
+
+//        /* Пример 14 - схлопывание */
+//        documentView {
+////            marginCollapsing = false
+//
+//            document {
+//                borderStyle {
+//                    margin = Size.dp(4f)
+//                    border = Border.px(1f, Color.BLACK)
+//                    horizontalPadding = Size.mm(2f)
+//                }
+//
+//                paragraphStyle {
+//                    align = ParagraphStyle.Align.JUSTIFY
+//                    spaceBefore = Size.mm(5f)
+//                    spaceAfter = Size.mm(5f)
+//                }
+//
+//                text = """
+//                    Lo~rem ip~sum do~lor sit amet, con~sec~te~tur adi~pis~cing elit, sed do eius~mod tem~por in~ci~di~dunt ut la~bo~re et do~lo~re mag~na ali~qua.
+//                    Ut enim ad mi~nim ve~niam, qu~is nos~t~rud exer~ci~ta~tion ul~lam~co la~bo~ris ni~si ut ali~qu~ip ex ea com~mo~do con~se~qu~at.
+//                    Duis aute iru~re do~lor in rep~re~hen~de~rit in vo~lup~ta~te ve~lit es~se cil~lum do~lo~re eu fu~gi~at nul~la pa~ria~tur.
+//                """.trimIndent().replace('~', '\u00AD')
+//
+//                paragraph(0).borderStyle.backgroundColor = Color.rgb(0x26A65B)
+//                paragraph(1).borderStyle.backgroundColor = Color.rgb(0x26A65B)
+//                paragraph(2).borderStyle.backgroundColor = Color.rgb(0x26A65B)
+//            }
+//        }
+
+
+//        /* Примеры 15.1-15.4 */
+//        documentView {
+////            marginCollapsing = false
+//
+//            document {
+//                borderStyle {
+//                    margin = Size.dp(4f)
+//                    border = Border.px(1f, Color.BLACK)
+//                }
+//
+//                paragraphStyle {
+//                    align = ParagraphStyle.Align.JUSTIFY
+//                    spaceBefore = Size.mm(5f)
+//                    spaceAfter = Size.mm(5f)
+////                    spaceBefore = Size.mm(10f)
+////                    spaceAfter = Size.mm(10f)
+//                }
+//
+//                section {
+//                    borderStyle {
+//                        verticalMargin = Size.mm(10f)
+////                        verticalMargin = Size.mm(5f)
+//                        border = Border.dp(1f, Color.BLACK)
+//                        horizontalPadding = Size.mm(2f)
+//                        backgroundColor = Color.rgb(0xCF000F)
+////                        marginColor = Color.argb(0.7f, 0xCF000F)
+//                    }
+//
+//                    text = "Lo~rem ip~sum do~lor sit amet, con~sec~te~tur adi~pis~cing elit, sed do eius~mod tem~por in~ci~di~dunt ut la~bo~re et do~lo~re mag~na ali~qua."
+//                            .replace('~', '\u00AD')
+//
+//                    paragraph(0).borderStyle.backgroundColor = Color.rgb(0x26A65B)
+////                    paragraph(0).borderStyle.marginColor = Color.argb(0.7f, 0x26A65B)
+//                }
+//            }
+//        }
+
+//        /* Пример 16 */
+//        documentView {
+//            //            marginCollapsing = false
+//
+//            document {
+//                borderStyle {
+//                    margin = Size.dp(4f)
+//                    border = Border.px(1f, Color.BLACK)
+//                }
+//
+//                paragraphStyle {
+//                    align = ParagraphStyle.Align.JUSTIFY
+//                    spaceBefore = Size.mm(5f)
+//                    spaceAfter = Size.mm(5f)
+//                }
+//
+//                section {
+//                    borderStyle {
+//                        verticalMargin = Size.mm(5f)
+//                        border = Border.dp(1f, Color.BLACK)
+//                        horizontalPadding = Size.mm(2f)
+//                        backgroundColor = Color.rgb(0xCF000F)
+//                        marginColor = Color.argb(0.7f, 0xCF000F)
+//                    }
+//
+//                    section {
+//                        text = ("Lo~rem ip~sum do~lor sit amet, con~sec~te~tur adi~pis~cing " +
+//                                "elit, sed do eius~mod tem~por in~ci~di~dunt ut la~bo~re et " +
+//                                "do~lo~re mag~na ali~qua.")
+//                                .replace('~', '\u00AD')
+//
+//                        borderStyle {
+//                            verticalMargin = Size.mm(5f)
+//                            border = Border.dp(1f, Color.BLACK)
+//                            horizontalPadding = Size.mm(2f)
+//                            backgroundColor = Color.rgb(0x22A7F0)
+//                            marginColor = Color.argb(0.7f, 0x22A7F0)
+//                        }
+//
+//                        paragraph(0).borderStyle.backgroundColor = Color.rgb(0x26A65B)
+//                        paragraph(0).borderStyle.marginColor = Color.argb(0.7f, 0x26A65B)
+//                    }
+//                }
+//            }
+//        }
+
+//        /* Пример 17 */
+//        documentView {
+//            //            marginCollapsing = false
+//
+//            document {
+//                borderStyle {
+//                    margin = Size.dp(4f)
+//                    border = Border.px(1f, Color.BLACK)
+//                }
+//
+//                paragraphStyle {
+//                    align = ParagraphStyle.Align.JUSTIFY
+//                    spaceBefore = Size.mm(5f)
+//                    spaceAfter = Size.mm(5f)
+//                }
+//
+//                section {
+//                    borderStyle {
+//                        verticalMargin = Size.mm(5f)
+//                        horizontalPadding = Size.mm(2f)
+//                        backgroundColor = Color.rgb(0xCF000F)
+////                        marginColor = Color.argb(0.7f, 0xCF000F)
+//                    }
+//
+//                    section {
+//                        text = ("Lo~rem ip~sum do~lor sit amet, con~sec~te~tur adi~pis~cing " +
+//                                "elit, sed do eius~mod tem~por in~ci~di~dunt ut la~bo~re et " +
+//                                "do~lo~re mag~na ali~qua.")
+//                                .replace('~', '\u00AD')
+//
+//                        borderStyle {
+//                            verticalMargin = Size.mm(5f)
+//                            horizontalPadding = Size.mm(2f)
+//                            backgroundColor = Color.rgb(0x22A7F0)
+////                            marginColor = Color.argb(0.7f, 0x22A7F0)
+//                        }
+//
+//                        paragraph(0).borderStyle.backgroundColor = Color.rgb(0x26A65B)
+////                        paragraph(0).borderStyle.marginColor = Color.argb(0.7f, 0x26A65B)
+//                    }
+//                }
+//
+//                section {
+//                    borderStyle {
+//                        verticalMargin = Size.mm(5f)
+//                        horizontalPadding = Size.mm(2f)
+//                        backgroundColor = Color.rgb(0xCF000F)
+////                        marginColor = Color.argb(0.7f, 0xCF000F)
+//                    }
+//
+//                    section {
+//                        text = ("Lo~rem ip~sum do~lor sit amet, con~sec~te~tur adi~pis~cing " +
+//                                "elit, sed do eius~mod tem~por in~ci~di~dunt ut la~bo~re et " +
+//                                "do~lo~re mag~na ali~qua.")
+//                                .replace('~', '\u00AD')
+//
+//                        borderStyle {
+//                            verticalMargin = Size.mm(5f)
+//                            horizontalPadding = Size.mm(2f)
+//                            backgroundColor = Color.rgb(0x22A7F0)
+////                            marginColor = Color.argb(0.7f, 0x22A7F0)
+//                        }
+//
+//                        paragraph(0).borderStyle.backgroundColor = Color.rgb(0x26A65B)
+////                        paragraph(0).borderStyle.marginColor = Color.argb(0.7f, 0x26A65B)
+//                    }
+//                }
 //            }
 //        }
 
