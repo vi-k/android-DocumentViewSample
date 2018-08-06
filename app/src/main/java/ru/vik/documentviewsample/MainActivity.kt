@@ -495,7 +495,7 @@ class MainActivity : AppCompatActivity() {
 //                    margin = Size.dp(4f)
 //                }
 //
-//                span to word (4) style { font = "serif" }
+//                span to word(4) style { font = "serif" }
 //                span from word(5) style { font = "ponomar" }
 //            }
 //        }
