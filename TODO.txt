@@ -1,4 +1,6 @@
-﻿* Сравнение margin, border, padding (equal).
+﻿* collapseFirstMargin, collapseLastMargin у секций
+
+* Сравнение margin, border, padding (equal).
 
 * Нужны стили (или классы).
 

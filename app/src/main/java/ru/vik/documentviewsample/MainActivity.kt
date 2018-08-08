@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
 
         val documentView: DocumentView = findViewById(R.id.docView)
 
-        htmlTest(documentView)
+        htmlTest(this, documentView)
 
 //        /* Пример 1 - Простой пример */
 //        documentView {
