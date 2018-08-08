@@ -9,9 +9,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import ru.vik.documentview.DocumentView
 import ru.vik.documentview.Font
-import ru.vik.documentview.FontList
 import ru.vik.utils.color.Color
-import ru.vik.utils.color.mix
 import ru.vik.utils.document.*
 
 /**
@@ -29,7 +27,7 @@ class MainActivity : AppCompatActivity() {
 
         val documentView: DocumentView = findViewById(R.id.docView)
 
-        htmlTest(this, documentView)
+//        htmlTest(this, documentView)
 
 //        /* Пример 1 - Простой пример */
 //        documentView {
@@ -117,44 +115,52 @@ class MainActivity : AppCompatActivity() {
 //                    margin = Size.dp(4f)
 //                }
 //
-//                val red = CharacterStyle(color = Color.RED)
-//
 //                /* Пример 3.1 */
 //                paragraph(0) {
-//                    span on 0 style red
+//                    span on 0 style CharacterStyle(color = Color.RED)
 //                }
 //
 //                paragraph(1) {
-//                    span on 0 style red
+//                    span on 0 style CharacterStyle(color = Color.RED)
 //                }
 //
 //                paragraph(2) {
-//                    span on 0 style red
+//                    span on 0 style CharacterStyle(color = Color.RED)
 //                }
+//
+////                paragraph(0..2) {
+////                    span on 0 style CharacterStyle(color = Color.RED)
+////                }
+//
+////                paragraph(0, 1, 2) {
+////                    span on 0 style CharacterStyle(color = Color.RED)
+////                }
+//
+////                paragraph {
+////                    span on 0 style CharacterStyle(color = Color.RED)
+////                }
 
 //                /* Пример 3.2 */
+//                paragraph(0..2) {
+//                    span on 0 style CharacterStyle(color = Color.RED)
+//                }
+//
 //                paragraph(0) {
 //                    characterStyle {
 //                        italic = true
 //                    }
-//
-//                    span on 0 style red
 //                }
 //
 //                paragraph(1) {
 //                    characterStyle {
 //                        size = Size.em(0.8f)
 //                    }
-//
-//                    span on 0 style red
 //                }
 //
 //                paragraph(2) {
 //                    characterStyle {
 //                        color = Color.GRAY
 //                    }
-//
-//                    span on 0 style red
 //                }
 
 //                /* Пример 3.3 - Шрифты */
@@ -164,28 +170,26 @@ class MainActivity : AppCompatActivity() {
 //                    "mono" family Font(Typeface.MONOSPACE)
 //                }
 //
+//                paragraph(0..2) {
+//                    span on 0 style CharacterStyle(color = Color.RED)
+//                }
+//
 //                paragraph(0) {
 //                    characterStyle {
 //                        font = "sans_serif"
 //                    }
-//
-//                    span on 0 style red
 //                }
 //
 //                paragraph(1) {
 //                    characterStyle {
 //                        font = "serif"
 //                    }
-//
-//                    span on 0 style red
 //                }
 //
 //                paragraph(2) {
 //                    characterStyle {
 //                        font = "mono"
 //                    }
-//
-//                    span on 0 style red
 //                }
 
 //            }
@@ -197,12 +201,12 @@ class MainActivity : AppCompatActivity() {
 //            fontList {
 //                "serif1" family Font(Typeface.SERIF)
 //                "serif2" to Font(Typeface.SERIF)
-
-//                /* Пример 4.2 */
-//                "serif2:bold" to Font(Typeface.create(Typeface.SERIF, Typeface.BOLD))
-//                "serif2:italic" to Font(Typeface.create(Typeface.SERIF, Typeface.ITALIC))
-//                "serif2:bold_italic" to Font(Typeface.create(Typeface.SERIF, Typeface.BOLD_ITALIC))
-
+//
+////                /* Пример 4.2 */
+////                "serif2:bold" to Font(Typeface.create(Typeface.SERIF, Typeface.BOLD))
+////                "serif2:italic" to Font(Typeface.create(Typeface.SERIF, Typeface.ITALIC))
+////                "serif2:bold_italic" to Font(Typeface.create(Typeface.SERIF, Typeface.BOLD_ITALIC))
+//
 //            }
 //
 //            document {
@@ -214,22 +218,21 @@ class MainActivity : AppCompatActivity() {
 //                    margin = Size.dp(4f)
 //                }
 //
+//                paragraph(0..1) {
+//                    span to "dolor" style { bold = true }
+//                    span from "dolor" style { italic = true }
+//                }
+//
 //                paragraph(0) {
 //                    characterStyle {
 //                        font = "serif1"
 //                    }
-//
-//                    span to "dolor" style { bold = true }
-//                    span from "dolor" style { italic = true }
 //                }
 //
 //                paragraph(1) {
 //                    characterStyle {
 //                        font = "serif2"
 //                    }
-//
-//                    span to "dolor" style { bold = true }
-//                    span from "dolor" style { italic = true }
 //                }
 //
 //            }
@@ -280,30 +283,17 @@ class MainActivity : AppCompatActivity() {
 //                    margin = Size.dp(4f)
 //                }
 //
-//                paragraph(0) {
+//                paragraph(0..2) { index ->
 //                    borderStyle {
+//                        val color = when (index) {
+//                            0 -> 0xDC3023
+//                            1 -> 0x22A7F0
+//                            else -> 0x26C281
+//                        }
 //                        padding = Size.dp(8f)
-//                        border = Border.dp(1f, Color.rgb(0xDC3023))
+//                        backgroundColor = Color.argb(0.1f, color)
+//                        border = Border.dp(1f, Color.rgb(color))
 //                        margin = Size.dp(8f)
-//                        backgroundColor = Color.argb(0.1f, 0xDC3023)
-//                    }
-//                }
-//
-//                paragraph(1) {
-//                    borderStyle {
-//                        padding = Size.dp(8f)
-//                        border = Border.dp(1f, Color.rgb(0x22A7F0))
-//                        margin = Size.dp(8f)
-//                        backgroundColor = Color.argb(0.1f, 0x22A7F0)
-//                    }
-//                }
-//
-//                paragraph(2) {
-//                    borderStyle {
-//                        padding = Size.dp(8f)
-//                        border = Border.dp(1f, Color.rgb(0x26C281))
-//                        margin = Size.dp(8f)
-//                        backgroundColor = Color.argb(0.1f, 0x26C281)
 //                    }
 //                }
 //            }
@@ -325,11 +315,15 @@ class MainActivity : AppCompatActivity() {
 //                    backgroundColor = Color.argb(0.1f, 0xF9690E)
 //                }
 //
-//                paragraph(0) {
+//                paragraph(0..2) {
 //                    borderStyle {
 //                        padding = Size.dp(8f)
 //                        margin = Size.dp(8f)
+//                    }
+//                }
 //
+//                paragraph(0) {
+//                    borderStyle {
 //                        borderTop = Border.dp(8f, Color.rgb(0xDC3023))
 //                        borderRight = Border.dp(8f, Color.rgb(0x22A7F0))
 //                        borderBottom = Border.dp(8f, Color.rgb(0x26C281))
@@ -340,9 +334,6 @@ class MainActivity : AppCompatActivity() {
 //
 //                paragraph(1) {
 //                    borderStyle {
-//                        padding = Size.dp(8f)
-//                        margin = Size.dp(8f)
-//
 //                        borderLeft = Border.dp(8f, Color.rgb(0x22A7F0))
 //                        backgroundColor = Color.argb(0.2f, 0x22A7F0)
 //                    }
@@ -350,9 +341,6 @@ class MainActivity : AppCompatActivity() {
 //
 //                paragraph(2) {
 //                    borderStyle {
-//                        padding = Size.dp(8f)
-//                        margin = Size.dp(8f)
-//
 //                        verticalBorder = Border.dp(8f, Color.TRANSPARENT)
 //                        horizontalBorder = Border.dp(8f, Color.rgb(0x26C281))
 //                        backgroundColor = Color.argb(0.2f, 0x26C281)
@@ -847,9 +835,11 @@ class MainActivity : AppCompatActivity() {
 
 //        /* Пример 14 - схлопывание */
 //        documentView {
-////            marginCollapsing = false
-//
 //            document {
+////                marginCollapsing = false
+////                ignoreFirstMargin = true
+////                ignoreLastMargin = true
+//
 //                borderStyle {
 //                    margin = Size.dp(4f)
 //                    border = Border.px(1f, Color.BLACK)
@@ -868,18 +858,20 @@ class MainActivity : AppCompatActivity() {
 //                    Duis aute iru~re do~lor in rep~re~hen~de~rit in vo~lup~ta~te ve~lit es~se cil~lum do~lo~re eu fu~gi~at nul~la pa~ria~tur.
 //                """.trimIndent().replace('~', '\u00AD')
 //
-//                paragraph(0).borderStyle.backgroundColor = Color.rgb(0x26A65B)
-//                paragraph(1).borderStyle.backgroundColor = Color.rgb(0x26A65B)
-//                paragraph(2).borderStyle.backgroundColor = Color.rgb(0x26A65B)
+//                paragraph(0..2) {
+//                    borderStyle.backgroundColor = Color.rgb(0x26A65B)
+//                }
 //            }
 //        }
 
 
 //        /* Примеры 15.1-15.4 */
 //        documentView {
-////            marginCollapsing = false
-//
 //            document {
+////                marginCollapsing = false
+////                ignoreFirstMargin = true
+////                ignoreLastMargin = true
+//
 //                borderStyle {
 //                    margin = Size.dp(4f)
 //                    border = Border.px(1f, Color.BLACK)
@@ -894,29 +886,32 @@ class MainActivity : AppCompatActivity() {
 //                }
 //
 //                section {
+//                    ignoreFirstMargin = true
+//                    ignoreLastMargin = true
+//
 //                    borderStyle {
 //                        verticalMargin = Size.mm(10f)
 ////                        verticalMargin = Size.mm(5f)
-//                        border = Border.dp(1f, Color.BLACK)
+////                        border = Border.dp(1f, Color.BLACK)
 //                        horizontalPadding = Size.mm(2f)
 //                        backgroundColor = Color.rgb(0xCF000F)
-////                        marginColor = Color.argb(0.7f, 0xCF000F)
+//                        marginColor = Color.argb(0.7f, 0xCF000F)
 //                    }
 //
 //                    text = "Lo~rem ip~sum do~lor sit amet, con~sec~te~tur adi~pis~cing elit, sed do eius~mod tem~por in~ci~di~dunt ut la~bo~re et do~lo~re mag~na ali~qua."
 //                            .replace('~', '\u00AD')
 //
 //                    paragraph(0).borderStyle.backgroundColor = Color.rgb(0x26A65B)
-////                    paragraph(0).borderStyle.marginColor = Color.argb(0.7f, 0x26A65B)
+//                    paragraph(0).borderStyle.marginColor = Color.argb(0.7f, 0x26A65B)
 //                }
 //            }
 //        }
 
 //        /* Пример 16 */
 //        documentView {
-//            //            marginCollapsing = false
-//
 //            document {
+////                marginCollapsing = false
+//
 //                borderStyle {
 //                    margin = Size.dp(4f)
 //                    border = Border.px(1f, Color.BLACK)
@@ -960,9 +955,9 @@ class MainActivity : AppCompatActivity() {
 
 //        /* Пример 17 */
 //        documentView {
-//            //            marginCollapsing = false
-//
 //            document {
+////                marginCollapsing = false
+//
 //                borderStyle {
 //                    margin = Size.dp(4f)
 //                    border = Border.px(1f, Color.BLACK)
@@ -1023,6 +1018,58 @@ class MainActivity : AppCompatActivity() {
 //
 //                        paragraph(0).borderStyle.backgroundColor = Color.rgb(0x26A65B)
 ////                        paragraph(0).borderStyle.marginColor = Color.argb(0.7f, 0x26A65B)
+//                    }
+//                }
+//            }
+//        }
+
+
+//        /* Пример 18 */
+//        documentView {
+//            fontList {
+//                "sans_serif" family Font(Typeface.SANS_SERIF)
+//                "serif" family Font(Typeface.SERIF)
+//            }
+//
+//            document {
+////                marginCollapsing = false
+//                ignoreFirstMargin = true
+//                ignoreLastMargin = true
+//
+//                text = """
+//                    Lorem ipsum
+//                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+//                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+//                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+//                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+//                """.trimIndent()
+//
+//                borderStyle {
+//                    horizontalPadding = Size.dp(8f)
+//                    border = Border.px(1f, Color.BLACK)
+//                    margin = Size.dp(4f)
+//                }
+//
+//                characterStyle {
+//                    size = Size.pt(8f)
+//                    font = "sans_serif"
+//                }
+//
+//                paragraphStyle {
+//                    firstLeftIndent = Size.pt(16f)
+//                    spaceBefore = Size.pt(8f)
+//                    spaceAfter = Size.pt(8f)
+//                }
+//
+//                paragraph(0) {
+//                    characterStyle {
+//                        size = Size.pt(16f)
+//                        bold = true
+//                        font = "serif"
+//                    }
+//                    paragraphStyle {
+//                        spaceBefore = Size.pt(16f)
+//                        spaceAfter = Size.pt(16f)
 //                    }
 //                }
 //            }
