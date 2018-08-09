@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
 
         val documentView: DocumentView = findViewById(R.id.docView)
 
-//        htmlTest(this, documentView)
+        htmlTest(this, documentView)
 
 //        /* Пример 1 - Простой пример */
 //        documentView {
@@ -128,20 +128,23 @@ class MainActivity : AppCompatActivity() {
 //                    span on 0 style CharacterStyle(color = Color.RED)
 //                }
 //
+////                /* 3.1.2 */
 ////                paragraph(0..2) {
 ////                    span on 0 style CharacterStyle(color = Color.RED)
 ////                }
 //
+////                /* 3.1.3 */
 ////                paragraph(0, 1, 2) {
 ////                    span on 0 style CharacterStyle(color = Color.RED)
 ////                }
 //
+////                /* 3.1.4 */
 ////                paragraph {
 ////                    span on 0 style CharacterStyle(color = Color.RED)
 ////                }
 
 //                /* Пример 3.2 */
-//                paragraph(0..2) {
+//                paragraph {
 //                    span on 0 style CharacterStyle(color = Color.RED)
 //                }
 //
@@ -170,7 +173,7 @@ class MainActivity : AppCompatActivity() {
 //                    "mono" family Font(Typeface.MONOSPACE)
 //                }
 //
-//                paragraph(0..2) {
+//                paragraph {
 //                    span on 0 style CharacterStyle(color = Color.RED)
 //                }
 //
@@ -218,7 +221,7 @@ class MainActivity : AppCompatActivity() {
 //                    margin = Size.dp(4f)
 //                }
 //
-//                paragraph(0..1) {
+//                paragraph {
 //                    span to "dolor" style { bold = true }
 //                    span from "dolor" style { italic = true }
 //                }
@@ -283,12 +286,13 @@ class MainActivity : AppCompatActivity() {
 //                    margin = Size.dp(4f)
 //                }
 //
-//                paragraph(0..2) { index ->
+//                paragraph { index ->
 //                    borderStyle {
 //                        val color = when (index) {
 //                            0 -> 0xDC3023
 //                            1 -> 0x22A7F0
-//                            else -> 0x26C281
+//                            2 -> 0x26C281
+//                            else -> 0
 //                        }
 //                        padding = Size.dp(8f)
 //                        backgroundColor = Color.argb(0.1f, color)
@@ -315,7 +319,7 @@ class MainActivity : AppCompatActivity() {
 //                    backgroundColor = Color.argb(0.1f, 0xF9690E)
 //                }
 //
-//                paragraph(0..2) {
+//                paragraph {
 //                    borderStyle {
 //                        padding = Size.dp(8f)
 //                        margin = Size.dp(8f)
