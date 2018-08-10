@@ -3,9 +3,10 @@ package ru.vik.documentviewsample
 import android.app.Activity
 import android.graphics.Typeface
 import ru.vik.documentview.DocumentView
-import ru.vik.documentview.Font
+import ru.vik.documentview.from
 import ru.vik.utils.color.Color
 import ru.vik.utils.document.*
+import ru.vik.utils.font.Font
 import ru.vik.utils.html.Tag
 import ru.vik.utils.htmldocument.BaseHtmlDocument
 import ru.vik.utils.htmldocument.toHtmlColor
@@ -16,40 +17,52 @@ fun htmlTest(activity: Activity, documentView: DocumentView) {
 
     documentView.document = htmlDocument
 
-    documentView.fontList {
-        "sans_serif" family Font(Typeface.SANS_SERIF)
-        "serif" family Font(Typeface.SERIF)
-        "mono" family Font(Typeface.MONOSPACE)
-        "ponomar" to Font(Typeface.createFromAsset(activity.assets, "fonts/PonomarUnicode.ttf")!!,
-                hyphen = '_', // Символ переноса для старославянского языка
-                ascentRatio = 0.9f,
-                descentRatio = 0.9f,
-                scale = 1.2f)
-        "georgia" to Font(Typeface.createFromAsset(activity.assets, "fonts/georgia.ttf")!!)
-        "georgia:bold" to Font(Typeface.createFromAsset(activity.assets, "fonts/georgiab.ttf")!!)
-        "georgia:italic" to Font(Typeface.createFromAsset(activity.assets, "fonts/georgiai.ttf")!!)
-        "georgia:bold_italic" to Font(
-                Typeface.createFromAsset(activity.assets, "fonts/georgiaz.ttf")!!)
-    }
-
     documentView {
         fontList {
-            "sans_serif" family Font(Typeface.SANS_SERIF)
-            "serif" family Font(Typeface.SERIF)
-            "mono" family Font(Typeface.MONOSPACE)
-            "ponomar" to Font(
+            family("sans_serif") from Font(Typeface.SANS_SERIF)
+            family("serif") from Font(Typeface.SERIF)
+            family("mono") from Font(Typeface.MONOSPACE)
+
+            font("ponomar") to Font(
                     Typeface.createFromAsset(activity.assets, "fonts/PonomarUnicode.ttf")!!,
                     hyphen = '_', // Символ переноса для старославянского языка
                     ascentRatio = 0.9f,
                     descentRatio = 0.9f,
                     scale = 1.2f)
-            "georgia" to Font(Typeface.createFromAsset(activity.assets, "fonts/georgia.ttf")!!)
-            "georgia:bold" to Font(
-                    Typeface.createFromAsset(activity.assets, "fonts/georgiab.ttf")!!)
-            "georgia:italic" to Font(
-                    Typeface.createFromAsset(activity.assets, "fonts/georgiai.ttf")!!)
-            "georgia:bold_italic" to Font(
-                    Typeface.createFromAsset(activity.assets, "fonts/georgiaz.ttf")!!)
+
+            font("georgia") to
+                    Font(Typeface.createFromAsset(activity.assets, "fonts/georgia.ttf")!!)
+            font("georgia", isBold = true) to
+                    Font(Typeface.createFromAsset(activity.assets, "fonts/georgiab.ttf")!!)
+            font("georgia", isItalic = true) to
+                    Font(Typeface.createFromAsset(activity.assets, "fonts/georgiai.ttf")!!)
+            font("georgia", isBold = true, isItalic = true) to
+                    Font(Typeface.createFromAsset(activity.assets, "fonts/georgiaz.ttf")!!)
+
+            font("segoeui", weight = 100) to
+                    Font(Typeface.createFromAsset(activity.assets, "fonts/segoeuil.ttf")!!)
+            font("segoeui", weight = 100, isItalic = true) to
+                    Font(Typeface.createFromAsset(activity.assets, "fonts/seguili.ttf")!!)
+            font("segoeui", weight = 250) to
+                    Font(Typeface.createFromAsset(activity.assets, "fonts/segoeuisl.ttf")!!)
+            font("segoeui", weight = 250, isItalic = true) to
+                    Font(Typeface.createFromAsset(activity.assets, "fonts/seguisli.ttf")!!)
+            font("segoeui", weight = 400) to
+                    Font(Typeface.createFromAsset(activity.assets, "fonts/segoeui.ttf")!!)
+            font("segoeui", weight = 400, isItalic = true) to Font(
+                    Typeface.createFromAsset(activity.assets, "fonts/segoeuii.ttf")!!)
+            font("segoeui", weight = 550) to
+                    Font(Typeface.createFromAsset(activity.assets, "fonts/seguisb.ttf")!!)
+            font("segoeui", weight = 550, isItalic = true) to
+                    Font(Typeface.createFromAsset(activity.assets, "fonts/seguisbi.ttf")!!)
+            font("segoeui", weight = 700) to
+                    Font(Typeface.createFromAsset(activity.assets, "fonts/segoeuib.ttf")!!)
+            font("segoeui", weight = 700, isItalic = true) to Font(
+                    Typeface.createFromAsset(activity.assets, "fonts/segoeuiz.ttf")!!)
+            font("segoeui", weight = 900) to
+                    Font(Typeface.createFromAsset(activity.assets, "fonts/seguibl.ttf")!!)
+            font("segoeui", weight = 900, isItalic = true) to
+                    Font(Typeface.createFromAsset(activity.assets, "fonts/seguibli.ttf")!!)
         }
 
         document {
@@ -84,7 +97,7 @@ fun htmlTest(activity: Activity, documentView: DocumentView) {
 //        tag("i") {
 //            type = Tag.Type.CHARACTER
 //            characterStyle {
-//                italic = true
+//                isItalic = true
 //            }
 //        }
 
@@ -264,7 +277,7 @@ fun htmlTest(activity: Activity, documentView: DocumentView) {
 //        tag("div") {
 //            type = Tag.Type.SECTION
 //            characterStyle {
-//                italic = true
+//                isItalic = true
 //                font = "serif"
 //            }
 //            paragraphStyle {
@@ -381,129 +394,74 @@ fun htmlTest(activity: Activity, documentView: DocumentView) {
 //    }
 
 
-    /* Пример 5 */
+//    /* Пример 5 */
+//    htmlDocument {
+//        tag("p") {
+//            type = Tag.Type.PARAGRAPH
+//        }
+//
+//        tag("div") {
+//            type = Tag.Type.SECTION
+//        }
+//
+//        tag("div2") {
+//            type = Tag.Type.SECTION
+//        }
+//
+//        attr("align", "h1", "h2", "h3", "h4", "h5", "h6", "div", "p") {
+//            paragraphStyle { value ->
+//                when (value) {
+//                    "left" -> align = ParagraphStyle.Align.LEFT
+//                    "center" -> align = ParagraphStyle.Align.CENTER
+//                    "right" -> align = ParagraphStyle.Align.RIGHT
+//                    "justify" -> align = ParagraphStyle.Align.JUSTIFY
+//                }
+//            }
+//        }
+//
+//        attr("lang") {
+//            characterStyle { value ->
+//                if (value == "csl") font = "ponomar"
+//            }
+//        }
+//
+//        htmlDocument.text = """
+//            <div align='center'>
+//                <p>In the centre.</p>
+//                <p lang='csl'>Посредѣ̀.</p>
+//            </div>
+//            <div align='right'>
+//                <p>On the right.</p>
+//                <p lang='csl'>Ѡ҆деснѹ́ю.</p>
+//            </div>
+//            <div2 align='center'>
+//                <p>On the left. Not in the centre.</p>
+//                <p lang='csl'>Ѡ҆шѹ́юю, а҆  не посредѣ̀.</p>
+//            </div2>
+//        """.trimIndent()
+//    }
+
+
+    /* Пример 6 */
     htmlDocument {
+//        tag("br") {
+//            type = Tag.Type.BR
+//        }
+//
+//        tag("div") {
+//            type = Tag.Type.SECTION
+//        }
+
         tag("p") {
             type = Tag.Type.PARAGRAPH
         }
 
-        tag("div") {
-            type = Tag.Type.SECTION
+        tag("span") {
+            type = Tag.Type.CHARACTER
         }
 
-        tag("div2") {
-            type = Tag.Type.SECTION
-        }
-
-        attr("align", "h1", "h2", "h3", "h4", "h5", "h6", "div", "p") {
-            paragraphStyle { value ->
-                when (value) {
-                    "left" -> align = ParagraphStyle.Align.LEFT
-                    "center" -> align = ParagraphStyle.Align.CENTER
-                    "right" -> align = ParagraphStyle.Align.RIGHT
-                    "justify" -> align = ParagraphStyle.Align.JUSTIFY
-                }
-            }
-        }
-
-        attr("lang") {
-            characterStyle { value ->
-                if (value == "csl") font = "ponomar"
-            }
-        }
-
-        htmlDocument.text = """
-            <div align='center'>
-                <p>In the centre</p>
-                <p lang='csl'>Посредѣ̀</p>
-            </div>
-            <div align='right'>
-                <p>On the right</p>
-                <p lang='csl'>Ѡ҆деснѹ́ю</p>
-            </div>
-            <div2 align='center'>
-                <p>Not in the centre. On the left</p>
-                <p lang='csl'>Не посредѣ̀, а҆  ѡ҆шѹ́юю</p>
-            </div2>
-        """.trimIndent()
+        htmlDocument.text = "<span style='color: rgb(255,0,0); font-size: 0.8em; font-style: isItalic; font-weight: bold'>Lorem ipsum dolor <b><i>sit</i></b> " +
+                "<u>amet</u>, <s>consectetur</s> adipiscing <sup>elit</sup>, sed <sub>do</sub> " +
+                "<condensed>eiusmod</condensed> ..."
     }
-
-
-//        _document.setText("<h1>Header 1</h1>\n" +
-//                "<h2>Header 2</h2>\n" +
-//                "<p>Sans_serif: $test</p>\n" +
-//                "<p font='sans_serif2'>Sans_serif2: $test</p>\n" +
-//                "<p font='serif'>Serif: $test</p>\n" +
-//                "<p font='serif2'>Serif2: $test</p>\n" +
-//                "<p font='mono'>Mono: $test</p>\n" +
-//                "<p font='mono2'>Mono2: $test</p>\n" +
-//                "<csl><red>П</red>рї\u00ADи\u00ADди́\u00ADте ко мнѣ̀ всѝ " +
-//                "трꙋж\u00ADда́ю\u00ADщї\u00ADи\u00ADсѧ и҆ ѡ҆б\u00ADре\u00ADме\u00ADне́н\u00ADнїи, " +
-//                "и҆ а҆́зъ оу҆по\u00ADко́ю вы̀. <red>В</red>оз\u00AD̾ми́\u00ADте и҆́го моѐ на се\u00ADбѐ, и҆ " +
-//                "на\u00ADꙋ\u00ADчи́\u00ADте\u00ADсѧ ѿ ме\u00ADнѐ, ꙗ҆́кѡ кро́\u00ADтокъ є҆́смь и҆  " +
-//                "сми\u00ADре́нъ се́рд\u00ADцемъ, и҆ ѡ҆б\u00ADрѧ́\u00ADще\u00ADте по\u00ADко́й " +
-//                "дꙋ\u00ADша́мъ ва́\u00ADшымъ. <red>И҆́</red>го бо моѐ бла́\u00ADго, и҆ бре́\u00ADмѧ моѐ " +
-//                "лег\u00ADко̀ є҆́сть.</csl>\n" +
-//                "<p>Text<sup>sup</sup>, textBuilder<sub>sub</sub></p>\n" +
-//                "<p>Text<sup>sup<sup>sup</sup></sup>, textBuilder<sub>sub<sub>sub</sub></sub></p>\n" +
-//                "<p>Text<sup>sup<sub>sub<sup>sup<sub>sub</sub></sup></sub></sup>, " +
-//                "textBuilder<sub>sub<sup>sup<sub>sub<sup>sup</sup></sub></sup></sub>.</p>\n" +
-//                "<blockquote>«Наши люди в булочную на такси не ездят!»</blockquote>")
-
-//        _document.addTag("csl", BaseHtmlDocument.TagConfig(
-//                type = Tag.Type.PARAGRAPH,
-//                onSetCharacterStyle = { tag, characterStyle ->
-//                    characterStyle.font = "ponomar"
-//                    characterStyle.scaleX = 0.85f
-//                },
-//                onSetParagraphStyle = { tag, paragraphStyle ->
-//                    paragraphStyle.align = ParagraphStyle.Align.JUSTIFY
-//                    paragraphStyle.firstLeftIndent = Size.em(2f)
-//                },
-//                onSetBorderStyle = { tag, borderStyle ->
-//                    borderStyle.marginBottom = Size.dp(8f)
-//                    borderStyle.setBorder(Border.dp(1f, Color.rgb(0x5B8930)))
-//                    borderStyle.setPadding(topAndBottom = null, leftAndRight = Size.dp(4f))
-//                    borderStyle.backgroundColor = Color.argb(64, 0x5B8930)
-//                }
-//        ))
-//
-//        _document.addTag("blockquote", BaseHtmlDocument.TagConfig(
-//                type = Tag.Type.PARAGRAPH,
-//                onSetBorderStyle = { tag, borderStyle ->
-//                    borderStyle.marginBottom = Size.dp(8f)
-//                    borderStyle.marginLeft = Size.dp(16f)
-//                    borderStyle.borderLeft = Border.dp(4f, Color.rgb(0xE08A1E))
-//                    borderStyle.paddingLeft = Size.dp(16f)
-//                    borderStyle.backgroundColor = Color.argb(64, 0xE08A1E)
-//                },
-//                onSetCharacterStyle = { tag, characterStyle ->
-//                    characterStyle.backgroundColor = Color.rgb(64, 64, 64)
-//                    characterStyle.italic = true
-//                }
-//        ))
-//
-//        val test = "Normal, <b>bold</b>, <i>italic</i>, <u>underline</u>, " +
-//                "<s>strike</s>, <red>custom</red>."
-//
-//        _document.setText("<h1>Header 1</h1>\n" +
-//                "<h2>Header 2</h2>\n" +
-//                "<p>Sans_serif: $test</p>\n" +
-//                "<p font='sans_serif2'>Sans_serif2: $test</p>\n" +
-//                "<p font='serif'>Serif: $test</p>\n" +
-//                "<p font='serif2'>Serif2: $test</p>\n" +
-//                "<p font='mono'>Mono: $test</p>\n" +
-//                "<p font='mono2'>Mono2: $test</p>\n" +
-//                "<csl><red>П</red>рї\u00ADи\u00ADди́\u00ADте ко мнѣ̀ всѝ " +
-//                "трꙋж\u00ADда́ю\u00ADщї\u00ADи\u00ADсѧ и҆ ѡ҆б\u00ADре\u00ADме\u00ADне́н\u00ADнїи, " +
-//                "и҆ а҆́зъ оу҆по\u00ADко́ю вы̀. <red>В</red>оз\u00AD̾ми́\u00ADте и҆́го моѐ на се\u00ADбѐ, и҆ " +
-//                "на\u00ADꙋ\u00ADчи́\u00ADте\u00ADсѧ ѿ ме\u00ADнѐ, ꙗ҆́кѡ кро́\u00ADтокъ є҆́смь и҆  " +
-//                "сми\u00ADре́нъ се́рд\u00ADцемъ, и҆ ѡ҆б\u00ADрѧ́\u00ADще\u00ADте по\u00ADко́й " +
-//                "дꙋ\u00ADша́мъ ва́\u00ADшымъ. <red>И҆́</red>го бо моѐ бла́\u00ADго, и҆ бре́\u00ADмѧ моѐ " +
-//                "лег\u00ADко̀ є҆́сть.</csl>\n" +
-//                "<p>Text<sup>sup</sup>, textBuilder<sub>sub</sub></p>\n" +
-//                "<p>Text<sup>sup<sup>sup</sup></sup>, textBuilder<sub>sub<sub>sub</sub></sub></p>\n" +
-//                "<p>Text<sup>sup<sub>sub<sup>sup<sub>sub</sub></sup></sub></sup>, " +
-//                "textBuilder<sub>sub<sup>sup<sub>sub<sup>sup</sup></sub></sup></sub>.</p>\n" +
-//                "<blockquote>«Наши люди в булочную на такси не ездят!»</blockquote>")
 }

@@ -8,9 +8,12 @@ import android.graphics.Typeface
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import ru.vik.documentview.DocumentView
-import ru.vik.documentview.Font
+import ru.vik.documentview.from
+import ru.vik.documentview.typeface
 import ru.vik.utils.color.Color
+import ru.vik.utils.font.Font
 import ru.vik.utils.document.*
+import ru.vik.utils.font.FontList
 
 /**
  * MainActivity test
@@ -104,17 +107,17 @@ class MainActivity : AppCompatActivity() {
 //        documentView {
 //            document {
 //                text = """
-//                    |Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-//                    |Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-//                    |Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-//                """.trimMargin()
+//                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+//                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+//                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+//                """.trimIndent()
 //
 //                borderStyle {
 //                    padding  = Size.dp(8f)
 //                    border = Border.px(1f, Color.BLACK)
 //                    margin = Size.dp(4f)
 //                }
-//
+
 //                /* Пример 3.1 */
 //                paragraph(0) {
 //                    span on 0 style CharacterStyle(color = Color.RED)
@@ -168,9 +171,9 @@ class MainActivity : AppCompatActivity() {
 
 //                /* Пример 3.3 - Шрифты */
 //                fontList {
-//                    "sans_serif" family Font(Typeface.SANS_SERIF)
-//                    "serif" family Font(Typeface.SERIF)
-//                    "mono" family Font(Typeface.MONOSPACE)
+//                    family("sans_serif") from Font(Typeface.SANS_SERIF)
+//                    family("serif") from Font(Typeface.SERIF)
+//                    family("mono") from Font(Typeface.MONOSPACE)
 //                }
 //
 //                paragraph {
@@ -202,14 +205,17 @@ class MainActivity : AppCompatActivity() {
 //        /* Пример 4.1 */
 //        documentView {
 //            fontList {
-//                "serif1" family Font(Typeface.SERIF)
-//                "serif2" to Font(Typeface.SERIF)
+//                family("serif1") from Font(Typeface.SERIF)
+//                font("serif2") to Font(Typeface.SERIF)
+//                // Или другой вариант:
+//                // font("serif2") {
+//                //     typeface = Typeface.SERIF
+//                // }
 //
-////                /* Пример 4.2 */
-////                "serif2:bold" to Font(Typeface.create(Typeface.SERIF, Typeface.BOLD))
-////                "serif2:italic" to Font(Typeface.create(Typeface.SERIF, Typeface.ITALIC))
-////                "serif2:bold_italic" to Font(Typeface.create(Typeface.SERIF, Typeface.BOLD_ITALIC))
-//
+//                /* Пример 4.2 */
+////                font("serif2", isBold = true) to Font(Typeface.create(Typeface.SERIF, Typeface.BOLD))
+////                font("serif2", isItalic = true) to Font(Typeface.create(Typeface.SERIF, Typeface.ITALIC))
+////                font("serif2", isBold = true, isItalic = true) to Font(Typeface.create(Typeface.SERIF, Typeface.BOLD_ITALIC))
 //            }
 //
 //            document {
@@ -243,11 +249,112 @@ class MainActivity : AppCompatActivity() {
 
 
 //        /* Пример 5 */
+//        documentView {
+//            fontList {
+//                font("segoeui", weight = 100) to Font(Typeface.createFromAsset(assets, "fonts/segoeuil.ttf")!!)
+//                font("segoeui", weight = 100, isItalic = true) to Font(Typeface.createFromAsset(assets, "fonts/seguili.ttf")!!)
+//                font("segoeui", weight = 250) to Font(Typeface.createFromAsset(assets, "fonts/segoeuisl.ttf")!!)
+//                font("segoeui", weight = 250, isItalic = true) to Font(Typeface.createFromAsset(assets, "fonts/seguisli.ttf")!!)
+//                font("segoeui", weight = 400) to Font(Typeface.createFromAsset(assets, "fonts/segoeui.ttf")!!)
+//                font("segoeui", weight = 400, isItalic = true) to Font(Typeface.createFromAsset(assets, "fonts/segoeuii.ttf")!!)
+//                font("segoeui", weight = 550) to Font(Typeface.createFromAsset(assets, "fonts/seguisb.ttf")!!)
+//                font("segoeui", weight = 550, isItalic = true) to Font(Typeface.createFromAsset(assets, "fonts/seguisbi.ttf")!!)
+//                font("segoeui", weight = 700) to Font(Typeface.createFromAsset(assets, "fonts/segoeuib.ttf")!!)
+//                font("segoeui", weight = 700, isItalic = true) to Font(Typeface.createFromAsset(assets, "fonts/segoeuiz.ttf")!!)
+//                font("segoeui", weight = 900) to Font(Typeface.createFromAsset(assets, "fonts/seguibl.ttf")!!)
+//                font("segoeui", weight = 900, isItalic = true) to Font(Typeface.createFromAsset(assets, "fonts/seguibli.ttf")!!)
+//            }
+//
+//            document {
+//                text = """
+//                    Lorem ipsum dolor sit amet ...
+//                    Lorem ipsum dolor sit amet ...
+//                    Lorem ipsum dolor sit amet ...
+//                    Lorem ipsum dolor sit amet ...
+//                    Lorem ipsum dolor sit amet ...
+//                    Lorem ipsum dolor sit amet ...
+//                    Lorem ipsum dolor sit amet ...
+//                    Lorem ipsum dolor sit amet ...
+//                    Lorem ipsum dolor sit amet ...
+//                    Lorem ipsum dolor sit amet ...
+//                    Lorem ipsum dolor sit amet ...
+//                    Lorem ipsum dolor sit amet ...
+//                    Lorem ipsum dolor sit amet ...
+//                    Lorem ipsum dolor sit amet ...
+//                    Lorem ipsum dolor sit amet ...
+//                    Lorem ipsum dolor sit amet ...
+//                    Lorem ipsum dolor sit amet ...
+//                    Lorem ipsum dolor sit amet ...
+//                """.trimIndent()
+//
+//                borderStyle {
+//                    padding = Size.dp(8f)
+//                    border = Border.px(1f, Color.BLACK)
+//                    margin = Size.dp(4f)
+//                }
+//
+//                characterStyle {
+//                    font = "segoeui"
+//                }
+//
+//                paragraph { index ->
+//                    characterStyle {
+//                        weight = when (index % 6) {
+//                            0 -> Font.THIN   // 100
+//                            1 -> 250
+//                            2 -> Font.NORMAL // 400
+//                            3 -> 550
+//                            4 -> Font.BOLD   // 700
+//                            5 -> Font.BLACK  // 900
+//                            else -> Font.NORMAL
+//                        }
+//                        if (index in 6..11) italic = true
+//                        if (index in 12..17) oblique = true
+//                    }
+//                }
+//            }
+//        }
+
+
+//        /* Примеры 6.1-6.3 - коррекция шрифтов */
+//        documentView {
+//            fontList {
+//                family("serif") from Font(Typeface.SERIF)
+
+//                /* Пример 6.1 */
+//                font("ponomar") to Font(Typeface.createFromAsset(assets, "fonts/PonomarUnicode.ttf")!!)
+
+//                /* Пример 6.2 */
+//                font("ponomar") to Font(Typeface.createFromAsset(assets, "fonts/PonomarUnicode.ttf")!!,
+//                        scale = 1.2f)
+
+//                /* Пример 6.3 */
+//                font("ponomar") to Font(Typeface.createFromAsset(assets, "fonts/PonomarUnicode.ttf")!!,
+//                        scale = 1.2f, ascentRatio = 0.8f, descentRatio = 0.8f)
+
+//            }
+//
+//            document {
+//                text = "В начале сотворил Бог - Въ нача́лѣ сотворѝ бг҃ъ"
+//
+//                borderStyle {
+//                    padding = Size.dp(8f)
+//                    border = Border.px(1f, Color.BLACK)
+//                    margin = Size.dp(4f)
+//                }
+//
+//                span to word(4) style { font = "serif" }
+//                span from word(5) style { font = "ponomar" }
+//            }
+//        }
+
+
+//        /* Пример 7 */
 //        val commonFontList = FontList {
-//            "georgia" to Font(Typeface.createFromAsset(assets, "fonts/georgia.ttf")!!)
-//            "georgia:bold" to Font(Typeface.createFromAsset(assets, "fonts/georgiab.ttf")!!)
-//            "georgia:italic" to Font(Typeface.createFromAsset(assets, "fonts/georgiai.ttf")!!)
-//            "georgia:bold_italic" to Font(Typeface.createFromAsset(assets, "fonts/georgiaz.ttf")!!)
+//            font("georgia") to Font(Typeface.createFromAsset(assets, "fonts/georgia.ttf")!!)
+//            font("georgia", isBold = true) to Font(Typeface.createFromAsset(assets, "fonts/georgiab.ttf")!!)
+//            font("georgia", isItalic = true) to Font(Typeface.createFromAsset(assets, "fonts/georgiai.ttf")!!)
+//            font("georgia", isBold = true, isItalic = true) to Font(Typeface.createFromAsset(assets, "fonts/georgiaz.ttf")!!)
 //        }
 //
 //        documentView {
@@ -272,14 +379,14 @@ class MainActivity : AppCompatActivity() {
 //        }
 
 
-//        /* Пример 6.1 - Рамки */
+//        /* Пример 8.1 - Рамки */
 //        documentView {
 //            document {
 //                text = """
-//                    |Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-//                    |Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-//                    |Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-//                """.trimMargin()
+//                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+//                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+//                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+//                """.trimIndent()
 //
 //                borderStyle {
 //                    border = Border.px(1f, Color.BLACK)
@@ -304,14 +411,14 @@ class MainActivity : AppCompatActivity() {
 //        }
 
 
-//        /* Пример 6.2 */
+//        /* Пример 8.2 */
 //        documentView {
 //            document {
 //                text = """
-//                    |Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-//                    |Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-//                    |Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-//                """.trimMargin()
+//                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+//                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+//                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+//                """.trimIndent()
 //
 //                borderStyle {
 //                    border = Border.dp(4f, Color.rgb(0xF9690E))
@@ -354,16 +461,16 @@ class MainActivity : AppCompatActivity() {
 //        }
 
 
-//        /* Пример 7 - Оформление абзацев */
+//        /* Пример 9 - Оформление абзацев */
 //        documentView {
 //            document {
 //                text = """
-//                    |Lorem ipsum
-//                    |Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-//                    |Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-//                    |Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-//                    |Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-//                """.trimMargin()
+//                    Lorem ipsum
+//                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+//                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+//                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+//                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+//                """.trimIndent()
 //
 //                borderStyle {
 //                    padding = Size.dp(8f)
@@ -424,13 +531,13 @@ class MainActivity : AppCompatActivity() {
 //        }
 
 
-//        /* Пример 8 */
+//        /* Пример 10 */
 //        documentView {
 //            fontList {
-//                "georgia" to Font(Typeface.createFromAsset(assets, "fonts/georgia.ttf")!!)
-//                "georgia:bold" to Font(Typeface.createFromAsset(assets, "fonts/georgiab.ttf")!!)
-//                "georgia:italic" to Font(Typeface.createFromAsset(assets, "fonts/georgiai.ttf")!!)
-//                "georgia:bold_italic" to Font(Typeface.createFromAsset(assets, "fonts/georgiaz.ttf")!!)
+//                font("georgia") to Font(Typeface.createFromAsset(assets, "fonts/georgia.ttf")!!)
+//                font("georgia", isBold = true) to Font(Typeface.createFromAsset(assets, "fonts/georgiab.ttf")!!)
+//                font("georgia", isItalic = true) to Font(Typeface.createFromAsset(assets, "fonts/georgiai.ttf")!!)
+//                font("georgia", isBold = true, isItalic = true) to Font(Typeface.createFromAsset(assets, "fonts/georgiaz.ttf")!!)
 //            }
 //
 //            document {
@@ -460,49 +567,16 @@ class MainActivity : AppCompatActivity() {
 //        }
 
 
-//        /* Примеры 9.1-9.3 - коррекция шрифтов */
-//        documentView {
-//            fontList {
-//                "serif" family Font(Typeface.SERIF)
-//
-//                /* Пример 9 */
-//                "ponomar" to Font(Typeface.createFromAsset(assets, "fonts/PonomarUnicode.ttf")!!)
-//
-//                /* Пример 9.2 */
-//                "ponomar" to Font(Typeface.createFromAsset(assets, "fonts/PonomarUnicode.ttf")!!,
-//                        scale = 1.2f)
-//
-//                /* Пример 9.3 */
-//                "ponomar" to Font(Typeface.createFromAsset(assets, "fonts/PonomarUnicode.ttf")!!,
-//                        scale = 1.2f, ascentRatio = 0.8f, descentRatio = 0.8f)
-//
-//            }
-//
-//            document {
-//                text = "В начале сотворил Бог - Въ нача́лѣ сотворѝ бг҃ъ"
-//
-//                borderStyle {
-//                    padding = Size.dp(8f)
-//                    border = Border.px(1f, Color.BLACK)
-//                    margin = Size.dp(4f)
-//                }
-//
-//                span to word(4) style { font = "serif" }
-//                span from word(5) style { font = "ponomar" }
-//            }
-//        }
-
-
-//        /* Пример 10 - по примеру 8 */
+//        /* Пример 11 - по примеру 9 */
 //        documentView.document {
 //            // Мягкие переносы для наглядности обозначаем знаком '~', затем их переводим в '\u00AD'
 //            text = """
-//                |Lorem ipsum
-//                |Lo~rem ip~sum do~lor sit amet, con~sec~te~tur adi~pis~cing elit, sed do eius~mod tem~por in~ci~di~dunt ut la~bo~re et do~lo~re mag~na ali~qua.
-//                |Ut enim ad mi~nim ve~niam, qu~is nos~t~rud exer~ci~ta~tion ul~lam~co la~bo~ris ni~si ut ali~qu~ip ex ea com~mo~do con~se~quat.
-//                |Duis aute iru~re do~lor in rep~re~hen~de~rit in vo~lup~ta~te ve~lit es~se cil~lum do~lo~re eu fu~gi~at nul~la pa~ria~tur.
-//                |Ex~cep~te~ur sint oc~cae~cat cu~pi~da~tat non pro~i~dent, sunt in cul~pa qui of~fi~cia de~se~runt mol~lit anim id est la~bo~rum.
-//            """.trimMargin().replace('~', '\u00AD')
+//                Lorem ipsum
+//                Lo~rem ip~sum do~lor sit amet, con~sec~te~tur adi~pis~cing elit, sed do eius~mod tem~por in~ci~di~dunt ut la~bo~re et do~lo~re mag~na ali~qua.
+//                Ut enim ad mi~nim ve~niam, qu~is nos~t~rud exer~ci~ta~tion ul~lam~co la~bo~ris ni~si ut ali~qu~ip ex ea com~mo~do con~se~quat.
+//                Duis aute iru~re do~lor in rep~re~hen~de~rit in vo~lup~ta~te ve~lit es~se cil~lum do~lo~re eu fu~gi~at nul~la pa~ria~tur.
+//                Ex~cep~te~ur sint oc~cae~cat cu~pi~da~tat non pro~i~dent, sunt in cul~pa qui of~fi~cia de~se~runt mol~lit anim id est la~bo~rum.
+//            """.trimIndent().replace('~', '\u00AD')
 //
 //            borderStyle {
 //                padding = Size.dp(8f)
@@ -554,15 +628,16 @@ class MainActivity : AppCompatActivity() {
 //        }
 
 
-//        /* Пример 11 */
+//        /* Пример 12 */
 //        documentView {
 //            fontList {
-//                "ponomar" to Font(
-//                        typeface = Typeface.createFromAsset(assets, "fonts/PonomarUnicode.ttf")!!,
-//                        hyphen = '_', // Символ переноса для старославянского языка
-//                        ascentRatio = 0.9f,
-//                        descentRatio = 0.9f,
-//                        scale = 1.2f)
+//                font("ponomar") {
+//                    typeface = Typeface.createFromAsset(assets, "fonts/PonomarUnicode.ttf")!!
+//                    hyphen = '_' // Символ переноса для старославянского языка
+//                    ascentRatio = 0.9f
+//                    descentRatio = 0.9f
+//                    scale = 1.2f
+//                }
 //            }
 //
 //            document {
@@ -590,15 +665,15 @@ class MainActivity : AppCompatActivity() {
 //        }
 
 
-//        /* Пример 12 - базовые линии */
+//        /* Пример 13 - базовые линии */
 //        documentView {
-//            baselineMode = DocumentView.Baseline.PARAGRAPH
+//            baselineMode = DocumentView.Baseline.SECTION
 //            document {
 //                text = "Lo~rem ip~sum do~lor sit amet, con~sec~te~tur adi~pis~cing elit, sed do eius~mod tem~por in~ci~di~dunt ut la~bo~re et do~lo~re mag~na ali~qua."
 //                        .replace('~', '\u00AD')
 //
 //                borderStyle {
-//                    padding = Size.dp(8f)
+//                    horizontalPadding = Size.dp(8f)
 //                    border = Border.px(1f, Color.BLACK)
 //                    margin = Size.dp(4f)
 //                }
@@ -606,18 +681,18 @@ class MainActivity : AppCompatActivity() {
 //        }
 
 
-//        /* Примеры 13.1-13.7 */
+//        /* Примеры 14.1-14.7 */
 //        documentView {
-//            baselineMode = DocumentView.Baseline.VIEW
+//            baselineMode = DocumentView.Baseline.SECTION
 //            baselineColor = Color.rgb(0x4B77BE)
 //
 //            document {
 //                text = """
-//                    |Lo~rem ip~sum do~lor sit amet, con~sec~te~tur adi~pis~cing elit, sed do eius~mod tem~por in~ci~di~dunt ut la~bo~re et do~lo~re mag~na ali~qua.
-//                    |Ut enim ad mi~nim ve~niam, qu~is nos~t~rud exer~ci~ta~tion ul~lam~co la~bo~ris ni~si ut ali~qu~ip ex ea com~mo~do con~se~quat.
-//                    |Duis1 aute2 iru~re3 do~lor4 in5 rep~re~hen~de~rit6 in7 vo~lup~ta~te8 ve~lit9 es~se10 cil~lum11 do~lo~re12 eu13 fu~gi~at14 nul~la15 pa~ria~tur16.
-//                    |Ex~cep~te~ur sint oc~cae~cat cu~pi~da~tat non pro~i~dent1, sunt in cul~pa* qui of~fi~cia de~se~runt mol~lit anim2 id est la~bo~rum.
-//                """.trimMargin().replace('~', '\u00AD')
+//                    Lo~rem ip~sum do~lor sit amet, con~sec~te~tur adi~pis~cing elit, sed do eius~mod tem~por in~ci~di~dunt ut la~bo~re et do~lo~re mag~na ali~qua.
+//                    Ut enim ad mi~nim ve~niam, qu~is nos~t~rud exer~ci~ta~tion ul~lam~co la~bo~ris ni~si ut ali~qu~ip ex ea com~mo~do con~se~quat.
+//                    Duis1 aute2 iru~re3 do~lor4 in5 rep~re~hen~de~rit6 in7 vo~lup~ta~te8 ve~lit9 es~se10 cil~lum11 do~lo~re12 eu13 fu~gi~at14 nul~la15 pa~ria~tur16.
+//                    Ex~cep~te~ur sint oc~cae~cat cu~pi~da~tat non pro~i~dent1, sunt in cul~pa* qui of~fi~cia de~se~runt mol~lit anim2 id est la~bo~rum.
+//                """.trimIndent().replace('~', '\u00AD')
 //
 //                borderStyle {
 //                    horizontalPadding = Size.dp(8f)
@@ -633,8 +708,8 @@ class MainActivity : AppCompatActivity() {
 //                    align = ParagraphStyle.Align.JUSTIFY
 //                    firstLeftIndent = Size.dp(24f)
 //                }
-//
-//                // Пример 11.2
+
+//                // Пример 14.1
 //                paragraph(1) {
 //                    span on word(10) style { size = Size.em(1.4f) }
 //                }
@@ -653,7 +728,7 @@ class MainActivity : AppCompatActivity() {
 //                    }
 //                }
 
-//                // Пример 11.3
+//                // Пример 14.2
 //                paragraph(1) {
 //                    span on word(10) style { size = Size.em(1.4f) }
 //                }
@@ -672,7 +747,7 @@ class MainActivity : AppCompatActivity() {
 //                    }
 //                }
 
-//                // Пример 11.4
+//                // Пример 14.3
 //                paragraph(1) {
 //                    span on word(10) style { size = Size.em(1.4f) }
 //                }
@@ -691,7 +766,7 @@ class MainActivity : AppCompatActivity() {
 //                    }
 //                }
 
-//                // Пример 11.5
+//                // Пример 14.4
 //                paragraph(1) {
 //                    span on word(10) style {
 //                        size = Size.em(1.4f)
@@ -714,7 +789,7 @@ class MainActivity : AppCompatActivity() {
 //                    }
 //                }
 
-//                // Пример 11.5.2
+//                // Пример 14.4.2
 //                paragraph(1) {
 //                    span on word(10) style {
 //                        size = Size.em(1.4f)
@@ -737,7 +812,7 @@ class MainActivity : AppCompatActivity() {
 //                    }
 //                }
 
-//                // Пример 11.6
+//                // Пример 14.5
 //                characterStyle {
 //                    leading = Size.fh(1.15f)
 //                }
@@ -764,7 +839,7 @@ class MainActivity : AppCompatActivity() {
 //                    }
 //                }
 
-//                // Пример 11.7
+//                // Пример 14.6
 //                characterStyle {
 //                    leading = Size.fh(1.15f)
 //                }
@@ -798,7 +873,7 @@ class MainActivity : AppCompatActivity() {
 //                    }
 //                }
 
-//                // Пример 11.8
+//                // Пример 14.7
 //                characterStyle {
 //                    leading = Size.fh(1.15f)
 //                }
@@ -832,12 +907,12 @@ class MainActivity : AppCompatActivity() {
 //                        size = Size.em(0.58f)
 //                    }
 //                }
-//
+
 //            }
 //        }
 
 
-//        /* Пример 14 - схлопывание */
+//        /* Пример 15 - схлопывание */
 //        documentView {
 //            document {
 ////                marginCollapsing = false
@@ -869,7 +944,7 @@ class MainActivity : AppCompatActivity() {
 //        }
 
 
-//        /* Примеры 15.1-15.4 */
+//        /* Примеры 16.1-16.4 */
 //        documentView {
 //            document {
 ////                marginCollapsing = false
@@ -911,7 +986,7 @@ class MainActivity : AppCompatActivity() {
 //            }
 //        }
 
-//        /* Пример 16 */
+//        /* Пример 17 */
 //        documentView {
 //            document {
 ////                marginCollapsing = false
@@ -957,7 +1032,7 @@ class MainActivity : AppCompatActivity() {
 //            }
 //        }
 
-//        /* Пример 17 */
+//        /* Пример 18 */
 //        documentView {
 //            document {
 ////                marginCollapsing = false
@@ -1028,12 +1103,12 @@ class MainActivity : AppCompatActivity() {
 //        }
 
 
-//        /* Пример 18 */
+//        /* Пример 19??? */
 //        documentView {
 //            fontList {
-//                "sans_serif" family Font(Typeface.SANS_SERIF)
-//                "serif" family Font(Typeface.SERIF)
-//            }
+//                family("sans_serif") from Font(Typeface.SANS_SERIF)
+//                family("serif") from Font(Typeface.SERIF)
+///            }
 //
 //            document {
 ////                marginCollapsing = false
